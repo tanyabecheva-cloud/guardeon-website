@@ -1165,53 +1165,35 @@ footer {
 <section class="contact" id="join">
   <div class="contact-glow"></div>
   <div class="contact-inner">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h2 id="cta-title">Get in touch</h2>
-        <p id="cta-sub">Whether you're a parent, school, municipality, researcher, developer, or potential partner — we'd like to hear from you.</p>
-        <div class="contact-channels">
-          <div class="contact-ch">
-            <div class="ch-icon">&#9993;</div>
-            <div><a href="mailto:info@guardeon.org">info@guardeon.org</a></div>
-          </div>
-          <div class="contact-ch">
-            <div class="ch-icon">&#128187;</div>
-            <div><a href="https://github.com/tanyabecheva-cloud/guard-layer-app" target="_blank">GitHub Repository</a></div>
-          </div>
-          <div class="contact-ch">
-            <div class="ch-icon">&#127758;</div>
-            <div>Odense, Denmark<br><span style="font-size:.78rem;color:var(--text-3)">Non-profit association (forening)</span></div>
-          </div>
-        </div>
+    <div style="max-width:520px;margin:0 auto;">
+      <h2 id="cta-title" style="text-align:center;margin-bottom:8px;">Get in touch</h2>
+      <p id="cta-sub" style="text-align:center;color:var(--text-2);font-size:.95rem;line-height:1.7;margin-bottom:32px;">Whether you're a parent, school, municipality, researcher, developer, or potential partner — we'd like to hear from you.</p>
+      <div class="contact-form-wrap" id="contact-wrap">
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="Guardeon Contact Inquiry">
+          <input type="hidden" name="_gotcha" style="display:none">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Email address" required>
+          <select name="inquiry_type" required>
+            <option value="" disabled selected>What is this about?</option>
+            <option value="parent">I'm a parent — tell me more</option>
+            <option value="school">School / education institution</option>
+            <option value="municipality">Municipality / government</option>
+            <option value="research">Research collaboration</option>
+            <option value="partnership">Technology partnership</option>
+            <option value="developer">Developer / contributor</option>
+            <option value="media">Media / press inquiry</option>
+            <option value="other">Something else</option>
+          </select>
+          <input type="text" name="organization" placeholder="Organisation (optional)">
+          <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+          <button type="submit" id="cta-btn">Send Message</button>
+        </form>
       </div>
-      <div>
-        <div class="contact-form-wrap" id="contact-wrap">
-          <form class="contact-form" onsubmit="handleContact(event)">
-            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-            <input type="hidden" name="subject" value="Guardeon Contact Inquiry">
-            <input type="hidden" name="_gotcha" style="display:none">
-            <input type="text" name="name" placeholder="Your name" required>
-            <input type="email" name="email" placeholder="Email address" required>
-            <select name="inquiry_type" required>
-              <option value="" disabled selected>What is this about?</option>
-              <option value="parent">I'm a parent — tell me more</option>
-              <option value="school">School / education institution</option>
-              <option value="municipality">Municipality / government</option>
-              <option value="research">Research collaboration</option>
-              <option value="partnership">Technology partnership</option>
-              <option value="developer">Developer / contributor</option>
-              <option value="media">Media / press inquiry</option>
-              <option value="other">Something else</option>
-            </select>
-            <input type="text" name="organization" placeholder="Organisation (optional)">
-            <textarea name="message" placeholder="Your message" rows="4" required></textarea>
-            <button type="submit" id="cta-btn">Send Message</button>
-          </form>
-        </div>
-        <div class="contact-success" id="contact-success">
-          <h3>Message sent.</h3>
-          <p>Thank you for reaching out. We'll get back to you within 48 hours.</p>
-        </div>
+      <div class="contact-success" id="contact-success">
+        <h3>Message sent.</h3>
+        <p>Thank you for reaching out. We'll get back to you within 48 hours.</p>
       </div>
     </div>
   </div>
