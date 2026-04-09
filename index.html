@@ -416,36 +416,51 @@ section { padding:100px 0; }
 }
 @media(max-width:600px) { .founder-card { flex-direction:column; text-align:center; align-items:center; } .founder-tags { justify-content:center; } }
 
-/* ═══ CTA ═══ */
-.cta-section { background:var(--bg); padding:120px 0; text-align:center; position:relative; overflow:hidden; }
-.cta-glow {
+/* ═══ CONTACT ═══ */
+.contact { background:var(--bg); padding:120px 0; position:relative; overflow:hidden; }
+.contact-glow {
   position:absolute; width:600px; height:300px; border-radius:50%;
   filter:blur(100px); opacity:.08; pointer-events:none; bottom:-100px; left:50%; transform:translateX(-50%);
   background:linear-gradient(135deg,var(--blue),var(--violet));
 }
-.cta-inner { position:relative; z-index:1; max-width:540px; margin:0 auto; }
-.cta-inner h2 { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.4rem); letter-spacing:-1.5px; margin-bottom:16px; }
-.cta-inner p { color:var(--text-2); font-size:1rem; margin-bottom:36px; line-height:1.7; }
-.cta-form { display:flex; gap:10px; max-width:420px; margin:0 auto 12px; }
-.cta-form input {
-  flex:1; padding:13px 20px; border-radius:var(--radius-pill); font-size:.95rem;
-  font-family:'Inter',sans-serif; outline:none; background:var(--surface);
-  border:1.5px solid var(--border); color:var(--text); transition:border .2s;
+.contact-inner { position:relative; z-index:1; max-width:680px; margin:0 auto; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.contact-info h2 { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:clamp(1.6rem,3.5vw,2.2rem); letter-spacing:-1px; margin-bottom:12px; }
+.contact-info > p { color:var(--text-2); font-size:.95rem; line-height:1.7; margin-bottom:28px; }
+.contact-channels { display:flex; flex-direction:column; gap:16px; }
+.contact-ch {
+  display:flex; align-items:center; gap:12px; font-size:.88rem; color:var(--text-2);
 }
-.cta-form input::placeholder { color:var(--text-3); }
-.cta-form input:focus { border-color:var(--blue); }
-.cta-form button {
+.contact-ch .ch-icon {
+  width:36px; height:36px; border-radius:10px; background:var(--surface); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;
+}
+.contact-ch a { color:var(--blue-g); text-decoration:underline; text-underline-offset:3px; }
+.contact-form-wrap {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:32px;
+}
+.contact-form { display:flex; flex-direction:column; gap:12px; }
+.contact-form input, .contact-form select, .contact-form textarea {
+  padding:12px 16px; border-radius:var(--radius-sm); font-size:.9rem;
+  font-family:'Inter',sans-serif; outline:none; background:var(--bg);
+  border:1.5px solid var(--border); color:var(--text); transition:border .2s; width:100%;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder { color:var(--text-3); }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color:var(--blue); }
+.contact-form select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; cursor:pointer; }
+.contact-form select option { background:var(--bg); color:var(--text); }
+.contact-form textarea { resize:vertical; min-height:100px; }
+.contact-form button {
   padding:13px 24px; border-radius:var(--radius-pill); font-size:.95rem; font-weight:700;
   font-family:'Inter',sans-serif; border:none; cursor:pointer;
-  background:var(--text); color:var(--bg); transition:all .2s;
+  background:var(--text); color:var(--bg); transition:all .2s; width:100%;
 }
-.cta-form button:hover { opacity:.9; transform:translateY(-1px); }
-.cta-note { font-size:.78rem; color:var(--text-3); }
-.cta-success { display:none; }
-.cta-success.show { display:block; }
-.cta-success h3 { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.5rem; color:var(--emerald); margin-bottom:8px; }
-.cta-success p { color:var(--text-2); font-size:.95rem; }
-@media(max-width:480px) { .cta-form { flex-direction:column; } }
+.contact-form button:hover { opacity:.9; transform:translateY(-1px); }
+.contact-success { display:none; text-align:center; padding:40px 20px; }
+.contact-success.show { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:300px; }
+.contact-success h3 { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.4rem; color:var(--emerald); margin-bottom:8px; }
+.contact-success p { color:var(--text-2); font-size:.9rem; line-height:1.6; }
+@media(max-width:600px) { .contact-grid { grid-template-columns:1fr; } }
 
 /* ═══ LANG SWITCHER ═══ */
 .lang-switcher {
@@ -1143,47 +1158,61 @@ footer {
         From <em>guard</em> (to protect) and <em>eon</em> (an age). We build open-source AI that keeps children safe online — <strong>not as a product, but as a public good.</strong> For this generation and every one after.
       </p>
     </div>
-    <div class="founder-card" style="margin-top:56px;">
-      <div class="founder-avatar">TB</div>
-      <div class="founder-info">
-        <div class="founder-name">Tanya Becheva</div>
-        <div class="founder-role">Founder &middot; Security & Trust, Europe</div>
-        <div class="founder-bio">
-          Over a decade in <strong>trust, safety, and security</strong> at one of the world's largest technology platforms. Active contributor to <strong>IEEE standards for child and youth safety in the digital age</strong>. Saw firsthand how the gap between policy and technology leaves children exposed.
-          <br><br>
-          Based in Denmark. Mother of two. Building what she wishes already existed.
-        </div>
-        <div class="founder-tags">
-          <span>IEEE Standards Contributor</span>
-          <span>Trust & Safety</span>
-          <span>Platform Security</span>
-          <span>PMP Certified</span>
-          <span>Denmark</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="join">
-  <div class="cta-glow"></div>
-  <div class="cta-inner">
-    <h2 id="cta-title">Protect children. Not their data.</h2>
-    <p id="cta-sub">Whether you're a parent, educator, developer, researcher, or policymaker — there's a place for you at Guardeon.</p>
-    <div id="cta-wrap">
-      <form class="cta-form" onsubmit="handleForm(event)">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
-        <input type="hidden" name="subject" value="New Guardeon Supporter">
-        <input type="hidden" name="_gotcha" style="display:none">
-        <input type="email" name="email" placeholder="Your email address" required>
-        <button type="submit" id="cta-btn">Join</button>
-      </form>
-      <p class="cta-note">We'll reach out about volunteer, partnership, and pilot opportunities.</p>
-    </div>
-    <div id="cta-success" class="cta-success">
-      <h3>Welcome aboard.</h3>
-      <p>You're part of the Guardeon community now. We'll be in touch.</p>
+<!-- CONTACT -->
+<section class="contact" id="join">
+  <div class="contact-glow"></div>
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2 id="cta-title">Get in touch</h2>
+        <p id="cta-sub">Whether you're a parent, school, municipality, researcher, developer, or potential partner — we'd like to hear from you.</p>
+        <div class="contact-channels">
+          <div class="contact-ch">
+            <div class="ch-icon">&#9993;</div>
+            <div><a href="mailto:info@guardeon.org">info@guardeon.org</a></div>
+          </div>
+          <div class="contact-ch">
+            <div class="ch-icon">&#128187;</div>
+            <div><a href="https://github.com/tanyabecheva-cloud/guard-layer-app" target="_blank">GitHub Repository</a></div>
+          </div>
+          <div class="contact-ch">
+            <div class="ch-icon">&#127758;</div>
+            <div>Odense, Denmark<br><span style="font-size:.78rem;color:var(--text-3)">Non-profit association (forening)</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form-wrap" id="contact-wrap">
+          <form class="contact-form" onsubmit="handleContact(event)">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+            <input type="hidden" name="subject" value="Guardeon Contact Inquiry">
+            <input type="hidden" name="_gotcha" style="display:none">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <select name="inquiry_type" required>
+              <option value="" disabled selected>What is this about?</option>
+              <option value="parent">I'm a parent — tell me more</option>
+              <option value="school">School / education institution</option>
+              <option value="municipality">Municipality / government</option>
+              <option value="research">Research collaboration</option>
+              <option value="partnership">Technology partnership</option>
+              <option value="developer">Developer / contributor</option>
+              <option value="media">Media / press inquiry</option>
+              <option value="other">Something else</option>
+            </select>
+            <input type="text" name="organization" placeholder="Organisation (optional)">
+            <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+            <button type="submit" id="cta-btn">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-success" id="contact-success">
+          <h3>Message sent.</h3>
+          <p>Thank you for reaching out. We'll get back to you within 48 hours.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1204,13 +1233,11 @@ footer {
 </footer>
 
 <script>
-function handleForm(e) {
+function handleContact(e) {
   e.preventDefault();
   var form = e.target;
-  var email = form.querySelector('input[type="email"]').value;
-  if (!email) return;
-  document.getElementById('cta-wrap').style.display = 'none';
-  document.getElementById('cta-success').classList.add('show');
+  document.getElementById('contact-wrap').style.display = 'none';
+  document.getElementById('contact-success').classList.add('show');
   var data = new FormData(form);
   fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
 }
