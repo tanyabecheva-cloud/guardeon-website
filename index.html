@@ -1,506 +1,869 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guardeon — Eternal protection for the digital age</title>
+<meta name="description" content="Guardeon is a non-profit building open-source, on-device AI that protects children from grooming, cyberbullying, and digital threats. Privacy-first. Free forever.">
 <meta property="og:title" content="Guardeon — Eternal protection for the digital age">
-<meta name="description" content="Guardeon — from guard and eon. Open-source AI technology that protects children from grooming, cyberbullying, and digital threats.">
-<meta property="og:description" content="Guardeon — from guard and eon. Open-source AI technology that protects children from grooming, cyberbullying, and digital threats.">
+<meta property="og:description" content="Open-source, on-device AI that protects children from digital threats. Privacy-first. Free forever.">
 <meta property="og:url" content="https://www.guardeon.org/">
 <meta property="og:type" content="website">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1a1a2e;--deep:#16213e;--accent:#4fc3f7;--accent-h:#29b6f6;--shield:#7c4dff;--shield-h:#651fff;--safe:#66bb6a;--warn:#ffb74d;--danger:#ef5350;--white:#ffffff;--ghost:rgba(255,255,255,.06);--glass:rgba(255,255,255,.08);--tx:rgba(255,255,255,.92);--tl:rgba(255,255,255,.55);--bd:rgba(255,255,255,.1)}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--tx)}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,26,46,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);padding:0 1.5rem;height:66px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:-0.5px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:10px}
-.nav-logo svg{width:28px;height:28px}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{color:var(--tl);text-decoration:none;font-size:.9rem;font-weight:500;transition:.2s}
-.nav-links a:hover{color:var(--accent)}
-.nav-cta{background:var(--accent);color:var(--navy);padding:9px 22px;border-radius:50px;font-weight:700;text-decoration:none;font-size:.9rem;transition:.2s;border:none;cursor:pointer;font-family:'Inter',sans-serif}
-.nav-cta:hover{background:var(--accent-h);transform:translateY(-1px)}
-
-/* HERO */
-.hero{padding:140px 1.5rem 100px;text-align:center;position:relative;overflow:hidden;background:var(--navy)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(79,195,247,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(124,77,255,.08) 0%,transparent 40%);pointer-events:none}
-.hero::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
-.hero-inner{position:relative;z-index:1;max-width:800px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--bd);border-radius:50px;padding:6px 18px 6px 8px;font-size:.82rem;color:var(--accent);font-weight:600;margin-bottom:28px}
-.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--safe);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(2.8rem,8vw,5rem);letter-spacing:-2px;line-height:1.05;margin-bottom:20px}
-.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),var(--shield));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--tl);max-width:560px;margin:0 auto 40px;line-height:1.7}
-.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.btn-primary{background:var(--accent);color:var(--navy);padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:700;text-decoration:none;transition:.25s;border:none;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{background:var(--accent-h);transform:translateY(-2px);box-shadow:0 8px 30px rgba(79,195,247,.3)}
-.btn-secondary{background:var(--glass);color:var(--tx);padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:600;text-decoration:none;transition:.25s;border:1.5px solid var(--bd);display:inline-flex;align-items:center;gap:8px}
-.btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px)}
-
-/* STATS */
-.stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-.stat{text-align:center}
-.stat-num{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.8rem;color:var(--accent);letter-spacing:-1px}
-.stat-label{font-size:.78rem;color:var(--tl);margin-top:2px}
-
-/* THREATS */
-.threats{background:var(--deep);padding:90px 1.5rem;position:relative}
-.threats::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
-.section-head{text-align:center;margin-bottom:56px}
-.section-head h2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-1px;margin-bottom:12px}
-.section-head h2 .accent{color:var(--accent)}
-.section-head p{color:var(--tl);font-size:1.05rem;max-width:520px;margin:0 auto;line-height:1.6}
-.threat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1000px;margin:0 auto}
-.threat-card{background:var(--glass);border:1.5px solid var(--bd);border-radius:16px;padding:28px 24px;transition:.3s}
-.threat-card:hover{border-color:var(--danger);box-shadow:0 12px 40px rgba(239,83,80,.12)}
-.threat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.5rem}
-.threat-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-.threat-card p{font-size:.88rem;color:var(--tl);line-height:1.6}
-.threat-stat{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--danger);font-size:.85rem;margin-top:12px}
-
-/* HOW IT WORKS */
-.how{background:var(--navy);padding:90px 1.5rem}
-.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;max-width:1000px;margin:0 auto}
-.how-step{background:var(--glass);border:1.5px solid var(--bd);border-radius:16px;padding:32px 24px;text-align:center;transition:.3s;position:relative}
-.how-step:hover{border-color:var(--accent);box-shadow:0 12px 40px rgba(79,195,247,.1)}
-.step-num{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:2.5rem;color:var(--accent);opacity:.2;position:absolute;top:16px;right:20px}
-.how-step .icon{width:56px;height:56px;border-radius:14px;background:rgba(79,195,247,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem}
-.how-step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-.how-step p{font-size:.88rem;color:var(--tl);line-height:1.6}
-
-/* WHO */
-.who{background:var(--deep);padding:90px 1.5rem}
-.who::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
-.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin:0 auto}
-.who-card{background:var(--glass);border:1.5px solid var(--bd);border-radius:16px;padding:28px 20px;text-align:center;transition:.3s}
-.who-card:hover{border-color:var(--shield);box-shadow:0 12px 30px rgba(124,77,255,.12)}
-.who-card .emoji{font-size:2.2rem;margin-bottom:12px}
-.who-card h3{font-size:.95rem;font-weight:700;margin-bottom:6px}
-.who-card p{font-size:.82rem;color:var(--tl);line-height:1.5}
-
-/* PRINCIPLES */
-.principles{background:var(--navy);padding:90px 1.5rem}
-.princ-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto}
-.princ-card{background:var(--glass);border:1.5px solid var(--bd);border-radius:16px;padding:28px 24px;transition:.3s}
-.princ-card:hover{border-color:var(--safe)}
-.princ-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.princ-card h3 .icon{font-size:1.2rem}
-.princ-card p{font-size:.88rem;color:var(--tl);line-height:1.6}
-
-/* FOUNDER */
-.founder{background:var(--deep);padding:90px 1.5rem;position:relative}
-.founder::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
-.founder-inner{max-width:720px;margin:0 auto;display:flex;gap:40px;align-items:center}
-.founder-photo{flex-shrink:0;width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--shield));display:flex;align-items:center;justify-content:center;position:relative}
-.founder-photo::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--bd);pointer-events:none}
-.founder-initials{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:3rem;color:var(--navy);letter-spacing:-1px}
-.founder-text{flex:1}
-.founder-label{font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
-.founder-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.6rem,3vw,2rem);letter-spacing:-1px;margin-bottom:4px}
-.founder-title{font-size:.9rem;color:var(--tl);margin-bottom:16px;font-style:italic}
-.founder-bio{font-size:.92rem;color:var(--tl);line-height:1.75}
-.founder-bio strong{color:var(--tx);font-weight:600}
-.founder-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.founder-tag{background:var(--glass);border:1px solid var(--bd);border-radius:50px;padding:5px 14px;font-size:.75rem;color:var(--tl);font-weight:500}
-@media(max-width:768px){.founder-inner{flex-direction:column;text-align:center}.founder-tags{justify-content:center}}
-
-/* ORIGIN */
-.origin{background:var(--navy);padding:100px 1.5rem;position:relative;overflow:hidden}
-.origin::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(124,77,255,.06) 0%,transparent 60%);pointer-events:none}
-.origin-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
-.origin-word{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,5.5rem);letter-spacing:-3px;line-height:1;margin-bottom:8px}
-.origin-word .guard{color:var(--accent)}
-.origin-word .eon{background:linear-gradient(135deg,var(--shield),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.origin-word .plus{color:var(--tl);font-weight:400;font-size:.5em;vertical-align:middle;margin:0 8px}
-.origin-tagline{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:40px}
-.origin-etymology{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.etym-card{background:var(--glass);border:1.5px solid var(--bd);border-radius:16px;padding:24px 28px;text-align:center;flex:0 1 240px;transition:.3s}
-.etym-card:hover{border-color:var(--accent)}
-.etym-word{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:4px}
-.etym-word.w1{color:var(--accent)}
-.etym-word.w2{background:linear-gradient(135deg,var(--shield),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.etym-meaning{font-size:.9rem;color:var(--tl);font-style:italic;margin-bottom:8px}
-.etym-desc{font-size:.82rem;color:var(--tl);line-height:1.5}
-.origin-quote{position:relative;max-width:580px;margin:0 auto 36px;padding:28px 32px;background:var(--glass);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;text-align:left}
-.origin-quote p{font-size:1.05rem;color:var(--tx);line-height:1.7;font-weight:500}
-.origin-mission{font-size:1rem;color:var(--tl);line-height:1.8;max-width:540px;margin:0 auto;text-align:center}
-.origin-mission strong{color:var(--tx);font-weight:600}
-@media(max-width:480px){.origin-etymology{flex-direction:column;align-items:center}}
-
-/* CTA */
-.cta{background:var(--deep);padding:100px 1.5rem;text-align:center;position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(79,195,247,.08) 0%,transparent 60%);pointer-events:none}
-.cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
-.cta h2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-1px;margin-bottom:16px}
-.cta p{color:var(--tl);font-size:1rem;margin-bottom:36px;line-height:1.7;max-width:480px;margin-left:auto;margin-right:auto}
-.cta-form{display:flex;gap:10px;max-width:440px;margin:0 auto 16px;flex-wrap:wrap;justify-content:center}
-.cta-form input[type="email"]{flex:1;min-width:220px;padding:14px 22px;border-radius:50px;border:2px solid var(--bd);background:var(--glass);color:var(--tx);font-size:1rem;font-family:'Inter',sans-serif;outline:none;transition:.3s}
-.cta-form input[type="email"]::placeholder{color:var(--tl)}
-.cta-form input[type="email"]:focus{border-color:var(--accent)}
-.cta-form button{background:var(--accent);color:var(--navy);border:none;padding:14px 28px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.25s}
-.cta-form button:hover{background:var(--accent-h);transform:translateY(-2px)}
-.cta-note{font-size:.78rem;color:var(--tl);margin-top:8px}
-.cta-success{display:none;text-align:center;max-width:500px;margin:0 auto;padding:1rem}
-.cta-success.show{display:block}
-.cta-success h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.6rem;color:var(--accent);margin-bottom:8px}
-.cta-success p{color:var(--tl);font-size:.95rem;line-height:1.6}
-
-/* FOOTER */
-footer{background:var(--navy);border-top:1px solid var(--bd);padding:40px 1.5rem;text-align:center}
-.foot-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;color:var(--accent);display:block;margin-bottom:8px}
-.foot-links{display:flex;gap:24px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
-.foot-links a{color:var(--tl);text-decoration:none;font-size:.85rem;transition:.2s}
-.foot-links a:hover{color:var(--accent)}
-.foot-copy{font-size:.8rem;color:rgba(255,255,255,.25)}
-.foot-org{font-size:.75rem;color:rgba(255,255,255,.2);margin-top:8px}
-
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--accent);color:var(--navy);padding:12px 24px;border-radius:50px;font-size:.9rem;font-weight:600;z-index:9999;display:flex;align-items:center;gap:8px;box-shadow:0 8px 30px rgba(0,0,0,.4);transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .4s;opacity:0;pointer-events:none}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .nav-links{display:none}
-  .threat-grid,.how-grid,.who-grid,.princ-grid{grid-template-columns:1fr}
-  .stats{gap:20px}
-  .hero h1{font-size:clamp(2.2rem,7vw,3.5rem)}
+/* ═══ RESET & BASE ═══ */
+:root {
+  --bg: #0a0a0f;
+  --bg2: #0f0f17;
+  --bg3: #141420;
+  --surface: rgba(255,255,255,.04);
+  --surface-h: rgba(255,255,255,.07);
+  --border: rgba(255,255,255,.08);
+  --border-h: rgba(255,255,255,.15);
+  --text: rgba(255,255,255,.9);
+  --text-2: rgba(255,255,255,.6);
+  --text-3: rgba(255,255,255,.35);
+  --blue: #3b82f6;
+  --blue-g: #60a5fa;
+  --indigo: #6366f1;
+  --violet: #8b5cf6;
+  --cyan: #22d3ee;
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 100px;
 }
-@media(max-width:480px){
-  .cta-form{flex-direction:column}
-  .cta-form input[type="email"]{min-width:auto}
-  .hero-actions{flex-direction:column;align-items:center}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+body { font-family:'Inter',system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden; }
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+.container { max-width:1120px; margin:0 auto; padding:0 24px; }
+
+/* ═══ NAV ═══ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(10,10,15,.8); backdrop-filter:blur(24px) saturate(1.2);
+  border-bottom:1px solid var(--border); height:64px;
 }
+.nav-inner { max-width:1120px; margin:0 auto; padding:0 24px; height:100%; display:flex; align-items:center; justify-content:space-between; }
+.nav-brand { display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.25rem; letter-spacing:-.5px; }
+.nav-brand svg { width:24px; height:24px; }
+.nav-links { display:flex; align-items:center; gap:32px; }
+.nav-links a { font-size:.875rem; font-weight:500; color:var(--text-2); transition:color .2s; }
+.nav-links a:hover { color:var(--text); }
+.nav-btn { font-size:.85rem; font-weight:600; color:var(--bg); background:var(--text); padding:8px 20px; border-radius:var(--radius-pill); transition:all .2s; }
+.nav-btn:hover { opacity:.9; transform:translateY(-1px); }
+@media(max-width:768px) { .nav-links { display:none; } }
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:120px 24px 80px; position:relative; overflow:hidden; text-align:center;
+}
+.hero-glow {
+  position:absolute; width:600px; height:600px; border-radius:50%;
+  filter:blur(120px); opacity:.15; pointer-events:none;
+}
+.hero-glow-1 { top:-200px; left:50%; transform:translateX(-70%); background:var(--blue); }
+.hero-glow-2 { bottom:-200px; right:-100px; background:var(--violet); opacity:.1; }
+.hero-content { position:relative; z-index:1; max-width:740px; }
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-pill);
+  padding:6px 16px; font-size:.8rem; font-weight:500; color:var(--text-2); margin-bottom:32px;
+}
+.hero-tag .pulse { width:6px; height:6px; border-radius:50%; background:var(--emerald); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(16,185,129,.4)} 50%{opacity:.6;box-shadow:0 0 0 6px rgba(16,185,129,0)} }
+.hero h1 {
+  font-family:'Space Grotesk',sans-serif; font-weight:800;
+  font-size:clamp(2.5rem,6.5vw,4.5rem); letter-spacing:-2.5px; line-height:1.05; margin-bottom:24px;
+}
+.hero h1 .em {
+  background:linear-gradient(135deg,var(--blue-g),var(--violet));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.hero-sub { font-size:clamp(1rem,2vw,1.15rem); color:var(--text-2); max-width:520px; margin:0 auto 40px; line-height:1.75; }
+.hero-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:var(--radius-pill); font-size:.95rem; font-weight:600; font-family:'Inter',sans-serif; border:none; cursor:pointer; transition:all .25s; }
+.btn-w { background:var(--text); color:var(--bg); }
+.btn-w:hover { box-shadow:0 8px 30px rgba(255,255,255,.15); transform:translateY(-2px); }
+.btn-g { background:var(--surface); color:var(--text); border:1px solid var(--border); }
+.btn-g:hover { border-color:var(--border-h); transform:translateY(-2px); }
+.btn svg { width:18px; height:18px; }
+
+/* ═══ LOGO STRIP ═══ */
+.trust-strip {
+  padding:48px 24px; text-align:center; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.trust-strip p { font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:var(--text-3); margin-bottom:20px; }
+.trust-logos { display:flex; gap:40px; justify-content:center; align-items:center; flex-wrap:wrap; opacity:.4; }
+.trust-logos span { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1rem; letter-spacing:-.3px; color:var(--text-2); }
+
+/* ═══ SECTION SHARED ═══ */
+section { padding:100px 0; }
+.s-label { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--blue-g); margin-bottom:12px; }
+.s-title { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-1.5px; margin-bottom:16px; line-height:1.15; }
+.s-sub { font-size:1.05rem; color:var(--text-2); max-width:520px; line-height:1.7; }
+.s-head { margin-bottom:56px; }
+.s-head-c { text-align:center; }
+.s-head-c .s-sub { margin:0 auto; }
+
+/* ═══ PROBLEM ═══ */
+.problem { background:var(--bg); }
+.problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.problem-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:32px 28px; transition:all .3s;
+}
+.problem-card:hover { border-color:var(--rose); background:rgba(244,63,94,.04); }
+.problem-card .num { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:2.5rem; letter-spacing:-1px; margin-bottom:4px; }
+.problem-card .num.r { color:var(--rose); }
+.problem-card .num.a { color:var(--amber); }
+.problem-card .num.v { color:var(--violet); }
+.problem-card h3 { font-size:.95rem; font-weight:700; margin-bottom:8px; }
+.problem-card p { font-size:.85rem; color:var(--text-2); line-height:1.6; }
+@media(max-width:768px) { .problem-grid { grid-template-columns:1fr; } }
+
+/* ═══ WHAT IT DOES ═══ */
+.features { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.feat-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:28px 24px; transition:all .3s; position:relative; overflow:hidden;
+}
+.feat-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--violet)); opacity:0; transition:opacity .3s;
+}
+.feat-card:hover::before { opacity:1; }
+.feat-card:hover { border-color:var(--border-h); background:var(--surface-h); }
+.feat-icon { width:40px; height:40px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:1.3rem; }
+.feat-card h3 { font-size:.95rem; font-weight:700; margin-bottom:6px; }
+.feat-card p { font-size:.83rem; color:var(--text-2); line-height:1.6; }
+.feat-tag { display:inline-block; font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; padding:3px 10px; border-radius:var(--radius-pill); margin-top:12px; }
+.feat-tag.b2c { background:rgba(59,130,246,.12); color:var(--blue-g); }
+.feat-tag.b2b { background:rgba(139,92,246,.12); color:var(--violet); }
+.feat-tag.both { background:rgba(16,185,129,.12); color:var(--emerald); }
+@media(max-width:768px) { .feat-grid { grid-template-columns:1fr; } }
+
+/* ═══ HOW IT WORKS ═══ */
+.how { background:var(--bg); }
+.how-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+.how-step {
+  background:var(--surface); padding:36px 28px; position:relative; text-align:center;
+  border:1px solid var(--border); border-radius:var(--radius);
+}
+.step-n {
+  width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--violet));
+  display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif;
+  font-weight:700; font-size:.85rem; color:#fff; margin:0 auto 16px;
+}
+.how-step h3 { font-size:.95rem; font-weight:700; margin-bottom:8px; }
+.how-step p { font-size:.83rem; color:var(--text-2); line-height:1.6; }
+@media(max-width:768px) { .how-steps { grid-template-columns:1fr; } }
+
+/* ═══ PRIVACY ═══ */
+.privacy { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.priv-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.priv-list { display:flex; flex-direction:column; gap:20px; }
+.priv-item { display:flex; gap:16px; align-items:flex-start; }
+.priv-check {
+  width:28px; height:28px; border-radius:50%; flex-shrink:0; margin-top:2px;
+  background:rgba(16,185,129,.1); border:1.5px solid rgba(16,185,129,.25);
+  display:flex; align-items:center; justify-content:center; color:var(--emerald); font-size:.9rem;
+}
+.priv-item h4 { font-size:.95rem; font-weight:700; margin-bottom:3px; }
+.priv-item p { font-size:.83rem; color:var(--text-2); line-height:1.55; }
+.priv-visual {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:40px; text-align:center; position:relative;
+}
+.priv-diagram { display:flex; flex-direction:column; gap:16px; align-items:center; }
+.priv-node {
+  background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:14px 24px; font-size:.85rem; font-weight:600; width:100%; max-width:280px;
+  display:flex; align-items:center; gap:10px;
+}
+.priv-node .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.priv-arrow { color:var(--text-3); font-size:1.2rem; }
+.priv-node.active { border-color:var(--emerald); background:rgba(16,185,129,.05); }
+.priv-node.blocked { border-color:var(--rose); opacity:.35; }
+.priv-blocked-label { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--rose); }
+@media(max-width:768px) { .priv-layout { grid-template-columns:1fr; } }
+
+/* ═══ PLATFORM ═══ */
+.platform { background:var(--bg); }
+.plat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.plat-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:32px 28px; transition:all .3s;
+}
+.plat-card:hover { border-color:var(--border-h); }
+.plat-card h3 { font-size:1rem; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+.plat-card h3 .badge {
+  font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:1px;
+  padding:3px 10px; border-radius:var(--radius-pill);
+}
+.plat-card h3 .badge.b2c { background:rgba(59,130,246,.12); color:var(--blue-g); }
+.plat-card h3 .badge.b2b { background:rgba(139,92,246,.12); color:var(--violet); }
+.plat-card p { font-size:.85rem; color:var(--text-2); line-height:1.65; margin-bottom:16px; }
+.plat-features { display:flex; flex-direction:column; gap:8px; }
+.plat-feat { display:flex; align-items:center; gap:8px; font-size:.82rem; color:var(--text-2); }
+.plat-feat .ck { color:var(--emerald); font-size:.75rem; }
+@media(max-width:768px) { .plat-grid { grid-template-columns:1fr; } }
+
+/* ═══ LANGUAGES ═══ */
+.langs { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.lang-grid { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.lang-pill {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-pill);
+  padding:10px 22px; font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:8px;
+  transition:all .2s;
+}
+.lang-pill:hover { border-color:var(--border-h); }
+.lang-pill .flag { font-size:1.1rem; }
+
+/* ═══ PARTNERSHIPS ═══ */
+.partners { background:var(--bg); }
+.partner-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:48px; }
+.partner-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:28px 24px; transition:all .3s;
+}
+.partner-card:hover { border-color:var(--border-h); }
+.partner-type {
+  font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px;
+  margin-bottom:12px; display:inline-block; padding:3px 10px; border-radius:var(--radius-pill);
+}
+.partner-type.tech { background:rgba(59,130,246,.1); color:var(--blue-g); }
+.partner-type.research { background:rgba(139,92,246,.1); color:var(--violet); }
+.partner-type.gov { background:rgba(16,185,129,.1); color:var(--emerald); }
+.partner-type.ngo { background:rgba(245,158,11,.1); color:var(--amber); }
+.partner-card h3 { font-size:.95rem; font-weight:700; margin-bottom:6px; }
+.partner-card p { font-size:.82rem; color:var(--text-2); line-height:1.6; }
+.partner-footer {
+  padding:40px 0 0; border-top:1px solid var(--border); text-align:center;
+}
+.partner-footer p { font-size:.85rem; color:var(--text-2); line-height:1.7; max-width:600px; margin:0 auto; }
+.partner-footer a { color:var(--blue-g); text-decoration:underline; text-underline-offset:3px; }
+@media(max-width:768px) { .partner-grid { grid-template-columns:1fr; } }
+
+/* ═══ ORIGIN ═══ */
+.origin { background:var(--bg); position:relative; overflow:hidden; }
+.origin-glow {
+  position:absolute; width:500px; height:500px; border-radius:50%;
+  filter:blur(140px); opacity:.08; pointer-events:none; top:50%; left:50%; transform:translate(-50%,-50%);
+  background:var(--violet);
+}
+.origin-inner { position:relative; z-index:1; max-width:640px; margin:0 auto; text-align:center; }
+.origin-word {
+  font-family:'Space Grotesk',sans-serif; font-weight:800;
+  font-size:clamp(3.5rem,10vw,6rem); letter-spacing:-3px; line-height:1; margin-bottom:8px;
+}
+.origin-word .w1 { color:var(--text); }
+.origin-word .w2 { background:linear-gradient(135deg,var(--blue-g),var(--violet)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.origin-tagline {
+  font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:.9rem;
+  text-transform:uppercase; letter-spacing:4px; color:var(--text-3); margin-bottom:48px;
+}
+.origin-cards { display:flex; gap:16px; justify-content:center; margin-bottom:40px; }
+.origin-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+  padding:28px 32px; text-align:center; flex:0 1 220px;
+}
+.origin-card .word { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.5rem; margin-bottom:4px; }
+.origin-card .word.c1 { color:var(--blue-g); }
+.origin-card .word.c2 { color:var(--violet); }
+.origin-card .pron { font-size:.82rem; color:var(--text-3); font-style:italic; margin-bottom:8px; }
+.origin-card .def { font-size:.85rem; color:var(--text-2); line-height:1.5; }
+.origin-quote {
+  background:var(--surface); border-left:2px solid var(--blue);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:24px 28px; text-align:left; margin-bottom:32px;
+  font-size:1rem; color:var(--text); line-height:1.75; font-weight:500;
+}
+.origin-mission { font-size:.95rem; color:var(--text-2); line-height:1.8; }
+.origin-mission strong { color:var(--text); }
+@media(max-width:480px) { .origin-cards { flex-direction:column; align-items:center; } }
+
+/* ═══ FOUNDER ═══ */
+.founder { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.founder-card {
+  max-width:680px; margin:0 auto; display:flex; gap:36px; align-items:flex-start;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:40px;
+}
+.founder-avatar {
+  width:100px; height:100px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.8rem; color:#fff;
+}
+.founder-info { flex:1; }
+.founder-name { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.4rem; letter-spacing:-.5px; margin-bottom:2px; }
+.founder-role { font-size:.85rem; color:var(--text-3); margin-bottom:16px; }
+.founder-bio { font-size:.88rem; color:var(--text-2); line-height:1.75; }
+.founder-bio strong { color:var(--text); font-weight:600; }
+.founder-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:16px; }
+.founder-tags span {
+  background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-pill);
+  padding:4px 12px; font-size:.72rem; font-weight:600; color:var(--text-3);
+}
+@media(max-width:600px) { .founder-card { flex-direction:column; text-align:center; align-items:center; } .founder-tags { justify-content:center; } }
+
+/* ═══ CTA ═══ */
+.cta-section { background:var(--bg); padding:120px 0; text-align:center; position:relative; overflow:hidden; }
+.cta-glow {
+  position:absolute; width:600px; height:300px; border-radius:50%;
+  filter:blur(100px); opacity:.08; pointer-events:none; bottom:-100px; left:50%; transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+}
+.cta-inner { position:relative; z-index:1; max-width:540px; margin:0 auto; }
+.cta-inner h2 { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.4rem); letter-spacing:-1.5px; margin-bottom:16px; }
+.cta-inner p { color:var(--text-2); font-size:1rem; margin-bottom:36px; line-height:1.7; }
+.cta-form { display:flex; gap:10px; max-width:420px; margin:0 auto 12px; }
+.cta-form input {
+  flex:1; padding:13px 20px; border-radius:var(--radius-pill); font-size:.95rem;
+  font-family:'Inter',sans-serif; outline:none; background:var(--surface);
+  border:1.5px solid var(--border); color:var(--text); transition:border .2s;
+}
+.cta-form input::placeholder { color:var(--text-3); }
+.cta-form input:focus { border-color:var(--blue); }
+.cta-form button {
+  padding:13px 24px; border-radius:var(--radius-pill); font-size:.95rem; font-weight:700;
+  font-family:'Inter',sans-serif; border:none; cursor:pointer;
+  background:var(--text); color:var(--bg); transition:all .2s;
+}
+.cta-form button:hover { opacity:.9; transform:translateY(-1px); }
+.cta-note { font-size:.78rem; color:var(--text-3); }
+.cta-success { display:none; }
+.cta-success.show { display:block; }
+.cta-success h3 { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.5rem; color:var(--emerald); margin-bottom:8px; }
+.cta-success p { color:var(--text-2); font-size:.95rem; }
+@media(max-width:480px) { .cta-form { flex-direction:column; } }
+
+/* ═══ FOOTER ═══ */
+footer {
+  border-top:1px solid var(--border); padding:40px 24px; text-align:center;
+}
+.foot-brand { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; letter-spacing:-.3px; margin-bottom:12px; }
+.foot-links { display:flex; gap:24px; justify-content:center; margin-bottom:16px; }
+.foot-links a { font-size:.82rem; color:var(--text-3); transition:color .2s; }
+.foot-links a:hover { color:var(--text); }
+.foot-legal { font-size:.75rem; color:var(--text-3); line-height:1.6; }
 </style>
 </head>
 <body>
 
-<script>
-function handleForm(e,formId){
-  e.preventDefault();
-  var form=e.target;
-  var email=form.querySelector('input[type="email"]').value;
-  if(!email)return;
-
-  // hide form, show success
-  var wrap=document.getElementById(formId+'-wrap');
-  var success=document.getElementById(formId+'-success');
-  if(wrap)wrap.style.display='none';
-  if(success)success.classList.add('show');
-
-  launchConfetti();
-  showToast('Welcome to Guardeon');
-
-  // send to Web3Forms
-  var data=new FormData(form);
-  fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
-}
-
-function launchConfetti(){
-  var colors=['#4fc3f7','#7c4dff','#66bb6a','#ffffff','#29b6f6','#651fff','#FFD700'];
-  var canvas=document.createElement('canvas');
-  canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99999;';
-  document.body.appendChild(canvas);
-  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
-  var ctx=canvas.getContext('2d');
-  var particles=[];
-  for(var i=0;i<200;i++){
-    var angle=(Math.random()*360-90)*Math.PI/180;
-    var speed=8+Math.random()*14;
-    particles.push({
-      x:canvas.width/2+(Math.random()-0.5)*canvas.width*0.6,
-      y:canvas.height*0.3+Math.random()*canvas.height*0.2,
-      vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed-6,
-      color:colors[Math.floor(Math.random()*colors.length)],
-      w:8+Math.random()*8,h:4+Math.random()*6,
-      rot:Math.random()*360,rotV:(Math.random()-0.5)*12,
-      life:1,decay:0.012+Math.random()*0.008
-    });
-  }
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    var alive=false;
-    for(var i=0;i<particles.length;i++){
-      var p=particles[i];if(p.life<=0)continue;alive=true;
-      p.vy+=0.4;p.vx*=0.99;p.x+=p.vx;p.y+=p.vy;
-      p.rot+=p.rotV;p.life-=p.decay;
-      ctx.save();ctx.globalAlpha=Math.max(0,p.life);
-      ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
-      ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
-      ctx.restore();
-    }
-    if(alive)requestAnimationFrame(draw);
-    else if(canvas.parentNode)canvas.parentNode.removeChild(canvas);
-  }
-  draw();
-}
-
-function showToast(msg){
-  var t=document.getElementById('toast');
-  if(!t)return;
-  t.querySelector('span').textContent=msg;
-  t.classList.add('show');
-  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},4000);
-}
-</script>
-
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Guardeon
-  </a>
-  <div class="nav-links">
-    <a href="#threats">The Problem</a>
-    <a href="#how">How It Works</a>
-    <a href="#who">Who It's For</a>
-    <a href="#principles">Principles</a>
-    <a href="#origin">Our Name</a>
-    <a href="#join" class="nav-cta">Get Involved</a>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <!-- Logo: two concentric rings (eon/eternal) with a keyhole (guard) -->
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="14" stroke="url(#lg1)" stroke-width="2"/>
+        <circle cx="16" cy="16" r="9" stroke="url(#lg1)" stroke-width="1.5" opacity=".5"/>
+        <circle cx="16" cy="13" r="3" stroke="url(#lg1)" stroke-width="1.5"/>
+        <path d="M16 16v5" stroke="url(#lg1)" stroke-width="1.5" stroke-linecap="round"/>
+        <defs><linearGradient id="lg1" x1="4" y1="4" x2="28" y2="28"><stop stop-color="#60a5fa"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+      </svg>
+      Guardeon
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#platform">Platform</a>
+      <a href="#origin">About</a>
+      <a href="#join" class="nav-btn">Get Involved</a>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge"><span class="dot"></span> Non-profit &middot; Open Source &middot; EU-based</div>
-    <h1>Every child deserves a <span class="gradient">safe digital world</span></h1>
-    <p class="hero-sub">From <em>guard</em> and <em>eon</em> — eternal protection. We're a non-profit building open-source AI that detects grooming, cyberbullying, and digital threats before harm happens.</p>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><span class="pulse"></span> Non-profit &middot; Open source &middot; On-device AI</div>
+    <h1>Protecting children in the <span class="em">digital age</span></h1>
+    <p class="hero-sub">Guardeon is open-source AI that detects grooming, cyberbullying, self-harm, and digital threats on your child's device. No data leaves the phone. Free forever.</p>
     <div class="hero-actions">
-      <a href="#join" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Support the Mission
+      <a href="#join" class="btn btn-w">Support the Mission</a>
+      <a href="https://github.com/tanyabecheva-cloud/guard-layer-app" target="_blank" class="btn btn-g">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
       </a>
-      <a href="https://github.com/tanyabecheva-cloud/guard-layer-app" class="btn-secondary" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        View on GitHub
-      </a>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="stat-num">1 in 3</div><div class="stat-label">children face online harassment</div></div>
-      <div class="stat"><div class="stat-num">500K+</div><div class="stat-label">predators online at any time</div></div>
-      <div class="stat"><div class="stat-num">40%</div><div class="stat-label">of kids don't tell anyone</div></div>
     </div>
   </div>
 </section>
 
-<!-- THREATS -->
-<section class="threats" id="threats">
-  <div class="section-head">
-    <h2>The threats are <span class="accent">real</span></h2>
-    <p>Children face dangers that evolve faster than parental controls can keep up. Guardeon uses AI to close the gap.</p>
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <p>Built with standards from</p>
+  <div class="trust-logos">
+    <span>IEEE</span>
+    <span>GDPR</span>
+    <span>EU AI Act</span>
+    <span>DSA</span>
+    <span>Open Source</span>
   </div>
-  <div class="threat-grid">
-    <div class="threat-card">
-      <div class="threat-icon" style="background:rgba(239,83,80,.1)">🎭</div>
-      <h3>Online Grooming</h3>
-      <p>Predators spend weeks building trust before exploitation. Our NLP models detect grooming language patterns in real time.</p>
-      <div class="threat-stat">Avg grooming time: 8 minutes on some platforms</div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">The problem</div>
+      <h2 class="s-title">Children are not safe online</h2>
+      <p class="s-sub">The threats evolve faster than parental controls. Predators use the same platforms your children do.</p>
     </div>
-    <div class="threat-card">
-      <div class="threat-icon" style="background:rgba(255,183,77,.1)">💬</div>
-      <h3>Cyberbullying</h3>
-      <p>Persistent harassment that follows children from school to home. Guardeon identifies escalating patterns before crisis.</p>
-      <div class="threat-stat">37% of children experience cyberbullying</div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="num r">1 in 3</div>
+        <h3>children face online harassment</h3>
+        <p>Cyberbullying follows them from school to home, 24/7, across every app and platform.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num a">8 min</div>
+        <h3>average grooming time</h3>
+        <p>On some platforms, predators can identify and begin grooming a child in under 8 minutes.</p>
+      </div>
+      <div class="problem-card">
+        <div class="num v">40%</div>
+        <h3>of children tell no one</h3>
+        <p>Most children don't report what happens to them online. By the time parents find out, damage is done.</p>
+      </div>
     </div>
-    <div class="threat-card">
-      <div class="threat-icon" style="background:rgba(124,77,255,.1)">🖼️</div>
-      <h3>Harmful Content</h3>
-      <p>Unsolicited explicit images, self-harm content, and violence. On-device image classification flags threats without cloud upload.</p>
-      <div class="threat-stat">Children as young as 7 receive explicit images</div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">What Guardeon does</div>
+      <h2 class="s-title">Comprehensive digital protection</h2>
+      <p class="s-sub">Nine integrated layers of defence that work silently on the device. No cloud. No surveillance. Just smart detection.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(244,63,94,.08)">🎭</div>
+        <h3>Grooming Detection</h3>
+        <p>NLP models trained on real grooming patterns — age probing, secrecy requests, boundary testing, gift bribery, isolation tactics. Detects escalation across conversations.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(245,158,11,.08)">💬</div>
+        <h3>Bullying Detection</h3>
+        <p>Identifies direct insults, social exclusion, threats, and sustained harassment. Tracks patterns across time — not just single messages.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(139,92,246,.08)">💜</div>
+        <h3>Self-Harm Signals</h3>
+        <p>Detects crisis language — hopelessness, method discussion, farewell messages. Triggers immediate crisis intervention with local hotline numbers.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(239,68,68,.08)">⚠️</div>
+        <h3>Violence Detection</h3>
+        <p>Flags threats, planning language, and manifesto-style messages. Designed to catch warning signs before they escalate.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(34,211,238,.08)">🧠</div>
+        <h3>Content Wellness</h3>
+        <p>Monitors for body image obsession, harmful challenges, radicalisation pipelines, and toxic social comparison patterns.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(251,146,60,.08)">🔞</div>
+        <h3>Adult Content Blocker</h3>
+        <p>Detects explicit content references, age verification bypass attempts, substance references, and gambling exposure.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(59,130,246,.08)">📷</div>
+        <h3>Photo Monitoring</h3>
+        <p>On-device photo library watcher. Detects rapid image bursts from chat apps, late-night selfies, and flags suspicious incoming media — without uploading anything.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(16,185,129,.08)">⏱️</div>
+        <h3>Screen Time Intelligence</h3>
+        <p>Background app monitoring with age-appropriate limits. Flags usage spikes, late-night sessions, and overuse of high-risk apps like Discord, TikTok, and Omegle.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon" style="background:rgba(168,85,247,.08)">🎮</div>
+        <h3>Content Radar</h3>
+        <p>Search and rate games, shows, YouTube channels, and TikTok creators by age. 50+ pre-rated entries with themes, parent notes, and safer alternatives.</p>
+        <span class="feat-tag b2c">Consumer</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
-  <div class="section-head">
-    <h2>How <span class="accent">Guardeon</span> works</h2>
-    <p>AI-powered protection that respects privacy. No screenshots. No surveillance. Just smart, on-device detection.</p>
-  </div>
-  <div class="how-grid">
-    <div class="how-step">
-      <span class="step-num">01</span>
-      <div class="icon">🔒</div>
-      <h3>On-Device Analysis</h3>
-      <p>All detection happens locally on the device. Messages and images never leave the phone. Privacy by design.</p>
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">How it works</div>
+      <h2 class="s-title">Four layers, one device</h2>
+      <p class="s-sub">Everything runs locally. No message ever leaves your child's phone.</p>
     </div>
-    <div class="how-step">
-      <span class="step-num">02</span>
-      <div class="icon">🧠</div>
-      <h3>AI Risk Engine</h3>
-      <p>Multi-language NLP models trained on real grooming, bullying, and threat patterns. Continuously learning, always improving.</p>
-    </div>
-    <div class="how-step">
-      <span class="step-num">03</span>
-      <div class="icon">🚨</div>
-      <h3>Smart Alerts</h3>
-      <p>Parents and guardians receive context-aware alerts with risk levels — not raw messages. Children's privacy stays intact.</p>
-    </div>
-    <div class="how-step">
-      <span class="step-num">04</span>
-      <div class="icon">📚</div>
-      <h3>Education First</h3>
-      <p>Built-in guides help parents have better conversations. Because technology works best alongside trust.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHO IT'S FOR -->
-<section class="who" id="who">
-  <div class="section-head">
-    <h2>Built for <span class="accent">everyone</span> who protects children</h2>
-    <p>Guardeon is a public good. Our tools are free for families and open to institutions.</p>
-  </div>
-  <div class="who-grid">
-    <div class="who-card">
-      <div class="emoji">👨‍👩‍👧‍👦</div>
-      <h3>Parents & Families</h3>
-      <p>Real-time protection without invading your child's privacy. Alerts, not surveillance.</p>
-    </div>
-    <div class="who-card">
-      <div class="emoji">🏫</div>
-      <h3>Schools</h3>
-      <p>Dashboard for digital wellbeing across student populations. Early intervention, not reaction.</p>
-    </div>
-    <div class="who-card">
-      <div class="emoji">🏛️</div>
-      <h3>Municipalities</h3>
-      <p>Evidence-based tools for child protection services. Aggregated, anonymised insights.</p>
-    </div>
-    <div class="who-card">
-      <div class="emoji">🔬</div>
-      <h3>Researchers</h3>
-      <p>Open datasets and models for studying digital threats to children. Advancing the science together.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-n">1</div>
+        <h3>Custom Keyboard</h3>
+        <p>A native iOS keyboard extension monitors typed and received messages across all apps. Runs as a secure sandboxed process.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-n">2</div>
+        <h3>On-Device AI</h3>
+        <p>Multi-language NLP and Apple NaturalLanguage framework analyse text in real time. Regex patterns + ML classifiers score risk across 7 threat categories.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-n">3</div>
+        <h3>Smart Alerts</h3>
+        <p>Parents receive context-aware alerts with risk levels — not raw messages. The child's privacy stays intact. Scores range from low to critical.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-n">4</div>
+        <h3>Child Intervention</h3>
+        <p>Age-appropriate pop-ups give the child guidance in the moment. Crisis situations surface local hotlines immediately. Education, not punishment.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PRINCIPLES -->
-<section class="principles" id="principles">
-  <div class="section-head">
-    <h2>Our <span class="accent">principles</span></h2>
-    <p>Technology this sensitive demands radical transparency.</p>
+<!-- PRIVACY -->
+<section class="privacy" id="privacy">
+  <div class="container">
+    <div class="priv-layout">
+      <div>
+        <div class="s-head">
+          <div class="s-label">Privacy architecture</div>
+          <h2 class="s-title">We can't see your data.<br>By design.</h2>
+          <p class="s-sub">Guardeon has no servers, no accounts, no cloud. There is nothing to hack because there is nothing to store.</p>
+        </div>
+        <div class="priv-list">
+          <div class="priv-item">
+            <div class="priv-check">&#10003;</div>
+            <div><h4>100% on-device processing</h4><p>All AI analysis runs locally using the phone's own processor. Messages never leave the device.</p></div>
+          </div>
+          <div class="priv-item">
+            <div class="priv-check">&#10003;</div>
+            <div><h4>No cloud, no accounts</h4><p>No sign-up required. No user data is collected, transmitted, or stored on any server, anywhere.</p></div>
+          </div>
+          <div class="priv-item">
+            <div class="priv-check">&#10003;</div>
+            <div><h4>PIN-protected parent dashboard</h4><p>Only the parent can view alerts. Encrypted locally using Expo Secure Store.</p></div>
+          </div>
+          <div class="priv-item">
+            <div class="priv-check">&#10003;</div>
+            <div><h4>Open source &amp; auditable</h4><p>Every line of code is public on GitHub. Security researchers can verify our claims.</p></div>
+          </div>
+          <div class="priv-item">
+            <div class="priv-check">&#10003;</div>
+            <div><h4>GDPR-native from day one</h4><p>Built in Denmark, designed for European standards. Compliant with the EU AI Act and Digital Services Act.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="priv-visual">
+        <div class="priv-diagram">
+          <div class="priv-node active"><span class="dot" style="background:var(--emerald)"></span> Child's device</div>
+          <div class="priv-arrow">&#8595;</div>
+          <div class="priv-node active"><span class="dot" style="background:var(--emerald)"></span> On-device AI engine</div>
+          <div class="priv-arrow">&#8595;</div>
+          <div class="priv-node active"><span class="dot" style="background:var(--emerald)"></span> Local alert storage</div>
+          <div class="priv-arrow">&#8595;</div>
+          <div class="priv-node active"><span class="dot" style="background:var(--emerald)"></span> Parent dashboard (PIN)</div>
+          <div style="margin:16px 0 8px"><div class="priv-blocked-label">&#10007; Blocked by design</div></div>
+          <div class="priv-node blocked"><span class="dot" style="background:var(--rose)"></span> Cloud servers</div>
+          <div class="priv-node blocked"><span class="dot" style="background:var(--rose)"></span> Third-party analytics</div>
+          <div class="priv-node blocked"><span class="dot" style="background:var(--rose)"></span> Ad networks</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="princ-grid">
-    <div class="princ-card">
-      <h3><span class="icon">🔓</span> Open Source</h3>
-      <p>Every line of code is public. Every model is auditable. Trust is earned through transparency, not marketing.</p>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">Platform</div>
+      <h2 class="s-title">Built for families. Ready for institutions.</h2>
+      <p class="s-sub">Whether you're a parent protecting one child or a school district protecting thousands.</p>
     </div>
-    <div class="princ-card">
-      <h3><span class="icon">🛡️</span> Privacy First</h3>
-      <p>On-device processing. No cloud uploads. No data harvesting. We protect children without surveilling them.</p>
+    <div class="plat-grid">
+      <div class="plat-card">
+        <h3>Family App <span class="badge b2c">B2C</span></h3>
+        <p>A mobile-native app for parents and families. Set up in minutes, runs silently in the background.</p>
+        <div class="plat-features">
+          <div class="plat-feat"><span class="ck">&#10003;</span> Real-time threat detection across all messaging apps</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Parent dashboard with risk-scored alerts</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Age-appropriate child interventions</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Content Radar — rate games, shows, YouTube, TikTok</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Screen time tracking with flagged-app alerts</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Photo library monitoring</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Crisis hotlines (Danish + international)</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Parent education guides per threat type</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> One-tap report to platform (Discord, TikTok, Roblox, etc.)</div>
+        </div>
+      </div>
+      <div class="plat-card">
+        <h3>School Dashboard <span class="badge b2b">B2B</span></h3>
+        <p>An anonymised, aggregate view for schools and municipalities. Early intervention at the institutional level.</p>
+        <div class="plat-features">
+          <div class="plat-feat"><span class="ck">&#10003;</span> Aggregate threat metrics — no individual student data</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Trend analysis (weekly, monthly, termly)</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Severity-coded alert summaries</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Prioritised recommended actions</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Export compliance reports</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> No PII — fully anonymised by design</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Municipality-ready deployment</div>
+        </div>
+      </div>
+      <div class="plat-card">
+        <h3>Native Mobile <span class="badge b2c">iOS &amp; Android</span></h3>
+        <p>Built with React Native and Expo for true cross-platform native performance. Not a web wrapper.</p>
+        <div class="plat-features">
+          <div class="plat-feat"><span class="ck">&#10003;</span> Native iOS keyboard extension (Swift)</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Apple NaturalLanguage framework integration</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Background fetch for screen time monitoring</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Secure local storage with encryption</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> App Groups for keyboard ↔ app communication</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Haptic feedback for alerts</div>
+        </div>
+      </div>
+      <div class="plat-card">
+        <h3>Open Source <span class="badge b2b">Developers</span></h3>
+        <p>Every component is open source. Integrate our detection engine into your own platform, or contribute to ours.</p>
+        <div class="plat-features">
+          <div class="plat-feat"><span class="ck">&#10003;</span> Full risk engine available as standalone module</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> ML training pipeline with synthetic data generation</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> 7-language threat detection library</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> Apple Create ML model training kit</div>
+          <div class="plat-feat"><span class="ck">&#10003;</span> MIT licensed</div>
+        </div>
+      </div>
     </div>
-    <div class="princ-card">
-      <h3><span class="icon">🌍</span> Non-Profit</h3>
-      <p>Guardeon is a registered Danish forening (association). No shareholders. No ads. Surplus funds the mission.</p>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="langs">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">Multilingual</div>
+      <h2 class="s-title">7 languages. Same protection.</h2>
+      <p class="s-sub">Predators speak every language. So does our detection engine. Auto-detects and analyses in real time.</p>
     </div>
-    <div class="princ-card">
-      <h3><span class="icon">🔬</span> Evidence-Based</h3>
-      <p>Built on peer-reviewed research. We publish our findings. If our approach is wrong, we want to know first.</p>
+    <div class="lang-grid">
+      <div class="lang-pill"><span class="flag">🇬🇧</span> English</div>
+      <div class="lang-pill"><span class="flag">🇩🇰</span> Danish</div>
+      <div class="lang-pill"><span class="flag">🇸🇪</span> Swedish</div>
+      <div class="lang-pill"><span class="flag">🇳🇴</span> Norwegian</div>
+      <div class="lang-pill"><span class="flag">🇩🇪</span> German</div>
+      <div class="lang-pill"><span class="flag">🇫🇷</span> French</div>
+      <div class="lang-pill"><span class="flag">🇸🇦</span> Arabic</div>
     </div>
-    <div class="princ-card">
-      <h3><span class="icon">🇪🇺</span> EU-Compliant</h3>
-      <p>GDPR-native. Aligned with the EU AI Act and Digital Services Act. Designed for European standards from day one.</p>
+  </div>
+</section>
+
+<!-- PARTNERSHIPS & RESEARCH -->
+<section class="partners" id="partners">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">Partnerships &amp; Research</div>
+      <h2 class="s-title">We don't work alone</h2>
+      <p class="s-sub">Guardeon is built on partnerships with the organisations leading the fight against child exploitation, online violence, and digital harm.</p>
     </div>
-    <div class="princ-card">
-      <h3><span class="icon">🤝</span> Collaborative</h3>
-      <p>Working with schools, municipalities, NGOs, and international bodies. This problem is too big for one organisation.</p>
+    <div class="partner-grid">
+      <div class="partner-card">
+        <div class="partner-type tech">Technology</div>
+        <h3>Thorn (Safer API)</h3>
+        <p>Integrating Thorn's Safer hash-matching technology to detect known child sexual abuse material (CSAM) on-device — the gold standard in proactive image detection, trusted by platforms worldwide.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type tech">Technology</div>
+        <h3>Microsoft PhotoDNA</h3>
+        <p>Perceptual hashing that identifies known harmful images even when cropped, resized, or altered. A critical second layer alongside Thorn for image-based threats.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type ngo">Reporting</div>
+        <h3>NCMEC CyberTipline</h3>
+        <p>Direct reporting pipeline to the National Center for Missing & Exploited Children. When Guardeon detects confirmed CSAM, parents can escalate to law enforcement in one tap.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type research">Research</div>
+        <h3>Horizon Europe Consortium</h3>
+        <p>Leading an EUR 8M research consortium across 5 EU countries — clinical psychology, computational linguistics, child rights, and on-device AI. 48-month programme with a 3,000-participant longitudinal study.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type research">Research</div>
+        <h3>University Partners</h3>
+        <p>Collaborating with research institutions across Denmark, Norway, Germany, Austria, and the Netherlands on neuroimaging studies, multilingual NLP, and child digital wellbeing.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type gov">Standards &amp; Policy</div>
+        <h3>IEEE &amp; EU Regulatory</h3>
+        <p>Contributing to IEEE standards for youth digital safety. Aligned with the EU AI Act, Digital Services Act (Article 28), and Denmark's under-15 social media legislation.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type ngo">Child Safety</div>
+        <h3>IWF &amp; INHOPE</h3>
+        <p>Working with the Internet Watch Foundation and INHOPE network for access to verified hash databases and international CSAM reporting infrastructure across 50+ countries.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type gov">Government</div>
+        <h3>Municipalities &amp; Schools</h3>
+        <p>Pilot programmes with Danish municipalities and school districts. Anonymised aggregate dashboards give institutions early-warning capability without exposing individual student data.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-type ngo">Crisis Services</div>
+        <h3>National Hotlines</h3>
+        <p>Integrated crisis pathways to B&oslash;rnetelefonen (DK 116 111), Red Barnet, For&aelig;ldreTelefonen, and international equivalents. When a child is at risk, the right help is one tap away.</p>
+      </div>
+    </div>
+    <div class="partner-footer">
+      <p>Guardeon is actively seeking partnerships with child safety organisations, research institutions, municipalities, and technology providers. If your organisation shares our mission, <a href="mailto:info@guardeon.org">get in touch</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGIN -->
+<section class="origin" id="origin">
+  <div class="container">
+    <div class="origin-glow"></div>
+    <div class="origin-inner">
+      <div class="s-label" style="margin-bottom:24px;">Our name</div>
+      <div class="origin-word"><span class="w1">Guard</span><span class="w2">eon</span></div>
+      <div class="origin-tagline">Eternal Protection</div>
+      <div class="origin-cards">
+        <div class="origin-card">
+          <div class="word c1">Guard</div>
+          <div class="pron">/ɡɑːrd/ — verb</div>
+          <div class="def">To watch over and protect from harm or danger</div>
+        </div>
+        <div class="origin-card">
+          <div class="word c2">Eon</div>
+          <div class="pron">/ˈiː.ɒn/ — noun</div>
+          <div class="def">An indefinitely long period of time; an age</div>
+        </div>
+      </div>
+      <div class="origin-quote">
+        Guardeon — from "guard" (to protect) and "eon" (an age, an era). Technology that protects children not just today, but for generations.
+      </div>
+      <p class="origin-mission">
+        Guardeon means protection that endures. We build open-source AI that keeps children safe online — <strong>not as a product, but as a public good.</strong> For this generation and every one after.
+      </p>
     </div>
   </div>
 </section>
 
 <!-- FOUNDER -->
-<section class="founder" id="founder">
-  <div class="founder-inner">
-    <div class="founder-photo"><span class="founder-initials">TB</span></div>
-    <div class="founder-text">
-      <div class="founder-label">Founder</div>
-      <div class="founder-name">Tanya Becheva</div>
-      <div class="founder-title">Security &amp; Trust, Europe</div>
-      <div class="founder-bio">
-        Tanya spent over a decade in <strong>trust, safety, and security</strong> at one of the world's largest technology platforms — working at the intersection of infrastructure security, content integrity, and platform risk across billions of users.
-        <br><br>
-        An active contributor to <strong>IEEE standards for child and youth safety in the digital age</strong>, she saw firsthand how the gap between policy and technology leaves children exposed. Guardeon was born from a simple conviction: the tools to protect children online should be <strong>open, free, and owned by no one.</strong>
-        <br><br>
-        Based in Denmark. Mother of two. Building what she wishes already existed.
-      </div>
-      <div class="founder-tags">
-        <span class="founder-tag">IEEE Standards Contributor</span>
-        <span class="founder-tag">Trust & Safety</span>
-        <span class="founder-tag">Platform Security</span>
-        <span class="founder-tag">PMP Certified</span>
-        <span class="founder-tag">Denmark</span>
+<section class="founder">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">Founder</div>
+    </div>
+    <div class="founder-card">
+      <div class="founder-avatar">TB</div>
+      <div class="founder-info">
+        <div class="founder-name">Tanya Becheva</div>
+        <div class="founder-role">Security & Trust, Europe</div>
+        <div class="founder-bio">
+          Tanya spent over a decade in <strong>trust, safety, and security</strong> at one of the world's largest technology platforms — working at the intersection of infrastructure security, content integrity, and platform risk across billions of users.
+          <br><br>
+          An active contributor to <strong>IEEE standards for child and youth safety in the digital age</strong>, she saw firsthand how the gap between policy and technology leaves children exposed. Guardeon was born from a simple conviction: the tools to protect children online should be <strong>open, free, and owned by no one.</strong>
+          <br><br>
+          Based in Denmark. Mother of two. Building what she wishes already existed.
+        </div>
+        <div class="founder-tags">
+          <span>IEEE Standards Contributor</span>
+          <span>Trust & Safety</span>
+          <span>Platform Security</span>
+          <span>PMP Certified</span>
+          <span>Denmark</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ORIGIN STORY -->
-<section class="origin" id="origin">
-  <div class="origin-inner">
-    <div class="origin-word"><span class="guard">Guard</span><span class="plus">+</span><span class="eon">eon</span></div>
-    <div class="origin-tagline">Eternal Protection</div>
-
-    <div class="origin-etymology">
-      <div class="etym-card">
-        <div class="etym-word w1">Guard</div>
-        <div class="etym-meaning">/ɡɑːrd/ — verb</div>
-        <div class="etym-desc">To watch over and protect from harm or danger</div>
-      </div>
-      <div class="etym-card">
-        <div class="etym-word w2">Eon</div>
-        <div class="etym-meaning">/ˈiː.ɒn/ — noun</div>
-        <div class="etym-desc">An indefinitely long period of time; an age</div>
-      </div>
-    </div>
-
-    <div class="origin-quote">
-      <p>Guardeon — from "guard" (to protect) and "eon" (an age, an era). Technology that protects children not just today, but for generations.</p>
-    </div>
-
-    <p class="origin-mission">
-      Guardeon means protection that endures. We build open-source AI that keeps children safe online — <strong>not as a product, but as a public good.</strong> For this generation and every one after.
-    </p>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta" id="join">
+<section class="cta-section" id="join">
+  <div class="cta-glow"></div>
   <div class="cta-inner">
-    <h2>Join the movement to <span class="accent">protect children online</span></h2>
+    <h2>Protect children. Not their data.</h2>
     <p>Whether you're a parent, educator, developer, researcher, or policymaker — there's a place for you at Guardeon.</p>
     <div id="cta-wrap">
-      <form class="cta-form" onsubmit="handleForm(event,'cta')">
+      <form class="cta-form" onsubmit="handleForm(event)">
         <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
         <input type="hidden" name="subject" value="New Guardeon Supporter">
         <input type="hidden" name="_gotcha" style="display:none">
         <input type="email" name="email" placeholder="Your email address" required>
-        <button type="submit">Get Involved</button>
+        <button type="submit">Join</button>
       </form>
       <p class="cta-note">We'll reach out about volunteer, partnership, and pilot opportunities.</p>
     </div>
     <div id="cta-success" class="cta-success">
       <h3>Welcome aboard.</h3>
-      <p>You're now part of the Guardeon community. We'll be in touch with ways you can contribute to keeping children safe online.</p>
+      <p>You're part of the Guardeon community now. We'll be in touch.</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span class="foot-logo">Guardeon</span>
+  <div class="foot-brand">Guardeon</div>
   <div class="foot-links">
     <a href="https://github.com/tanyabecheva-cloud/guard-layer-app" target="_blank">GitHub</a>
     <a href="mailto:info@guardeon.org">Contact</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#origin">About</a>
   </div>
-  <div class="foot-copy">&copy; 2026 Guardeon. All rights reserved.</div>
-  <div class="foot-org">Guardeon is a registered non-profit association (forening) in Denmark &middot; CVR pending</div>
+  <div class="foot-legal">
+    &copy; 2026 Guardeon. Non-profit association (forening) registered in Denmark. CVR pending.<br>
+    Open source under MIT licence. No data collected. No cookies. No tracking.
+  </div>
 </footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast"><span></span></div>
+<script>
+function handleForm(e) {
+  e.preventDefault();
+  var form = e.target;
+  var email = form.querySelector('input[type="email"]').value;
+  if (!email) return;
+  document.getElementById('cta-wrap').style.display = 'none';
+  document.getElementById('cta-success').classList.add('show');
+  var data = new FormData(form);
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+}
 
-</body></html>
+// Smooth reveal on scroll
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.problem-card, .feat-card, .how-step, .plat-card, .priv-item, .lang-pill, .origin-card').forEach(function(el) {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
