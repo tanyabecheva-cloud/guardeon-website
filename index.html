@@ -90,6 +90,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,26,46,.92
 .princ-card h3 .icon{font-size:1.2rem}
 .princ-card p{font-size:.88rem;color:var(--tl);line-height:1.6}
 
+/* FOUNDER */
+.founder{background:var(--deep);padding:90px 1.5rem;position:relative}
+.founder::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
+.founder-inner{max-width:720px;margin:0 auto;display:flex;gap:40px;align-items:center}
+.founder-photo{flex-shrink:0;width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--shield));display:flex;align-items:center;justify-content:center;position:relative}
+.founder-photo::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--bd);pointer-events:none}
+.founder-initials{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:3rem;color:var(--navy);letter-spacing:-1px}
+.founder-text{flex:1}
+.founder-label{font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.founder-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.6rem,3vw,2rem);letter-spacing:-1px;margin-bottom:4px}
+.founder-title{font-size:.9rem;color:var(--tl);margin-bottom:16px;font-style:italic}
+.founder-bio{font-size:.92rem;color:var(--tl);line-height:1.75}
+.founder-bio strong{color:var(--tx);font-weight:600}
+.founder-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.founder-tag{background:var(--glass);border:1px solid var(--bd);border-radius:50px;padding:5px 14px;font-size:.75rem;color:var(--tl);font-weight:500}
+@media(max-width:768px){.founder-inner{flex-direction:column;text-align:center}.founder-tags{justify-content:center}}
+
 /* ORIGIN */
 .origin{background:var(--navy);padding:100px 1.5rem;position:relative;overflow:hidden}
 .origin::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(124,77,255,.06) 0%,transparent 60%);pointer-events:none}
@@ -391,6 +408,32 @@ function showToast(msg){
     <div class="princ-card">
       <h3><span class="icon">🤝</span> Collaborative</h3>
       <p>Working with schools, municipalities, NGOs, and international bodies. This problem is too big for one organisation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="founder-inner">
+    <div class="founder-photo"><span class="founder-initials">TB</span></div>
+    <div class="founder-text">
+      <div class="founder-label">Founder</div>
+      <div class="founder-name">Tanya Becheva</div>
+      <div class="founder-title">Security &amp; Trust, Europe</div>
+      <div class="founder-bio">
+        Tanya spent over a decade in <strong>trust, safety, and security</strong> at one of the world's largest technology platforms — working at the intersection of infrastructure security, content integrity, and platform risk across billions of users.
+        <br><br>
+        An active contributor to <strong>IEEE standards for child and youth safety in the digital age</strong>, she saw firsthand how the gap between policy and technology leaves children exposed. Guardeon was born from a simple conviction: the tools to protect children online should be <strong>open, free, and owned by no one.</strong>
+        <br><br>
+        Based in Denmark. Mother of two. Building what she wishes already existed.
+      </div>
+      <div class="founder-tags">
+        <span class="founder-tag">IEEE Standards Contributor</span>
+        <span class="founder-tag">Trust & Safety</span>
+        <span class="founder-tag">Platform Security</span>
+        <span class="founder-tag">PMP Certified</span>
+        <span class="founder-tag">Denmark</span>
+      </div>
     </div>
   </div>
 </section>
