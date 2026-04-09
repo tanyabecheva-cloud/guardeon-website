@@ -345,6 +345,32 @@ section { padding:100px 0; }
 .cta-success p { color:var(--text-2); font-size:.95rem; }
 @media(max-width:480px) { .cta-form { flex-direction:column; } }
 
+/* ═══ LANG SWITCHER ═══ */
+.lang-switcher {
+  position:fixed; bottom:24px; right:24px; z-index:99;
+}
+.lang-toggle {
+  width:44px; height:44px; border-radius:50%; background:var(--bg2); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem;
+  transition:all .2s; box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.lang-toggle:hover { border-color:var(--border-h); transform:scale(1.05); }
+.lang-menu {
+  display:none; position:absolute; bottom:56px; right:0; background:var(--bg2);
+  border:1px solid var(--border); border-radius:var(--radius); padding:8px;
+  min-width:160px; box-shadow:0 12px 40px rgba(0,0,0,.5);
+}
+.lang-menu.open { display:block; }
+.lang-option {
+  display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:var(--radius-sm);
+  cursor:pointer; font-size:.85rem; font-weight:500; color:var(--text-2); transition:all .15s;
+  border:none; background:none; width:100%; text-align:left; font-family:'Inter',sans-serif;
+}
+.lang-option:hover { background:var(--surface-h); color:var(--text); }
+.lang-option.active { color:var(--blue-g); }
+.lang-option .flag { font-size:1.1rem; }
+@media(max-width:480px) { .lang-switcher { bottom:16px; right:16px; } }
+
 /* ═══ FOOTER ═══ */
 footer {
   border-top:1px solid var(--border); padding:40px 24px; text-align:center;
@@ -387,11 +413,11 @@ footer {
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
   <div class="hero-content">
-    <div class="hero-tag"><span class="pulse"></span> Non-profit &middot; Open source &middot; On-device AI</div>
-    <h1>Protecting children in the <span class="em">digital age</span></h1>
-    <p class="hero-sub">Guardeon is open-source AI that detects grooming, cyberbullying, self-harm, and digital threats on your child's device. No data leaves the phone. Free forever.</p>
+    <div class="hero-tag"><span class="pulse"></span> <span id="hero-tag-text">Non-profit &middot; Open source &middot; On-device AI</span></div>
+    <h1 id="hero-title">Protecting children in the <span class="em">digital age</span></h1>
+    <p class="hero-sub" id="hero-sub">Guardeon is open-source AI that detects grooming, cyberbullying, self-harm, and digital threats on your child's device. No data leaves the phone. Free forever.</p>
     <div class="hero-actions">
-      <a href="#join" class="btn btn-w">Support the Mission</a>
+      <a href="#join" class="btn btn-w" id="hero-btn">Support the Mission</a>
       <a href="https://github.com/tanyabecheva-cloud/guard-layer-app" target="_blank" class="btn btn-g">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         GitHub
@@ -416,9 +442,9 @@ footer {
 <section class="problem">
   <div class="container">
     <div class="s-head s-head-c">
-      <div class="s-label">The problem</div>
-      <h2 class="s-title">Children are not safe online</h2>
-      <p class="s-sub">The threats evolve faster than parental controls. Predators use the same platforms your children do.</p>
+      <div class="s-label" id="problem-label">The problem</div>
+      <h2 class="s-title" id="problem-title">Children are not safe online</h2>
+      <p class="s-sub" id="problem-sub">The threats evolve faster than parental controls. Predators use the same platforms your children do.</p>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
@@ -444,9 +470,9 @@ footer {
 <section class="features" id="features">
   <div class="container">
     <div class="s-head s-head-c">
-      <div class="s-label">What Guardeon does</div>
-      <h2 class="s-title">Comprehensive digital protection</h2>
-      <p class="s-sub">Nine integrated layers of defence that work silently on the device. No cloud. No surveillance. Just smart detection.</p>
+      <div class="s-label" id="feat-label">What Guardeon does</div>
+      <h2 class="s-title" id="feat-title">Comprehensive digital protection</h2>
+      <p class="s-sub" id="feat-sub">Nine integrated layers of defence that work silently on the device. No cloud. No surveillance. Just smart detection.</p>
     </div>
     <div class="feat-grid">
       <div class="feat-card">
@@ -511,9 +537,9 @@ footer {
 <section class="how" id="how">
   <div class="container">
     <div class="s-head s-head-c">
-      <div class="s-label">How it works</div>
-      <h2 class="s-title">Four layers, one device</h2>
-      <p class="s-sub">Everything runs locally. No message ever leaves your child's phone.</p>
+      <div class="s-label" id="how-label">How it works</div>
+      <h2 class="s-title" id="how-title">Four layers, one device</h2>
+      <p class="s-sub" id="how-sub">Everything runs locally. No message ever leaves your child's phone.</p>
     </div>
     <div class="how-steps">
       <div class="how-step">
@@ -546,9 +572,9 @@ footer {
     <div class="priv-layout">
       <div>
         <div class="s-head">
-          <div class="s-label">Privacy architecture</div>
-          <h2 class="s-title">We can't see your data.<br>By design.</h2>
-          <p class="s-sub">Guardeon has no servers, no accounts, no cloud. There is nothing to hack because there is nothing to store.</p>
+          <div class="s-label" id="priv-label">Privacy architecture</div>
+          <h2 class="s-title" id="priv-title">We can't see your data.<br>By design.</h2>
+          <p class="s-sub" id="priv-sub">Guardeon has no servers, no accounts, no cloud. There is nothing to hack because there is nothing to store.</p>
         </div>
         <div class="priv-list">
           <div class="priv-item">
@@ -801,15 +827,15 @@ footer {
 <section class="cta-section" id="join">
   <div class="cta-glow"></div>
   <div class="cta-inner">
-    <h2>Protect children. Not their data.</h2>
-    <p>Whether you're a parent, educator, developer, researcher, or policymaker — there's a place for you at Guardeon.</p>
+    <h2 id="cta-title">Protect children. Not their data.</h2>
+    <p id="cta-sub">Whether you're a parent, educator, developer, researcher, or policymaker — there's a place for you at Guardeon.</p>
     <div id="cta-wrap">
       <form class="cta-form" onsubmit="handleForm(event)">
         <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
         <input type="hidden" name="subject" value="New Guardeon Supporter">
         <input type="hidden" name="_gotcha" style="display:none">
         <input type="email" name="email" placeholder="Your email address" required>
-        <button type="submit">Join</button>
+        <button type="submit" id="cta-btn">Join</button>
       </form>
       <p class="cta-note">We'll reach out about volunteer, partnership, and pilot opportunities.</p>
     </div>
@@ -863,7 +889,243 @@ document.querySelectorAll('.problem-card, .feat-card, .how-step, .plat-card, .pr
   el.style.transition = 'opacity .6s ease, transform .6s ease';
   observer.observe(el);
 });
+
+// ═══ LANGUAGE SWITCHER ═══
+var translations = {
+  en: {
+    heroTag: 'Non-profit · Open source · On-device AI',
+    heroTitle: 'Protecting children in the <span class="em">digital age</span>',
+    heroSub: 'Guardeon is open-source AI that detects grooming, cyberbullying, self-harm, and digital threats on your child\'s device. No data leaves the phone. Free forever.',
+    heroBtn: 'Support the Mission',
+    problemLabel: 'The problem',
+    problemTitle: 'Children are not safe online',
+    problemSub: 'The threats evolve faster than parental controls. Predators use the same platforms your children do.',
+    featLabel: 'What Guardeon does',
+    featTitle: 'Comprehensive digital protection',
+    featSub: 'Nine integrated layers of defence that work silently on the device. No cloud. No surveillance. Just smart detection.',
+    howLabel: 'How it works',
+    howTitle: 'Four layers, one device',
+    howSub: 'Everything runs locally. No message ever leaves your child\'s phone.',
+    privLabel: 'Privacy architecture',
+    privTitle: 'We can\'t see your data.<br>By design.',
+    privSub: 'Guardeon has no servers, no accounts, no cloud. There is nothing to hack because there is nothing to store.',
+    ctaTitle: 'Protect children. Not their data.',
+    ctaSub: 'Whether you\'re a parent, educator, developer, researcher, or policymaker — there\'s a place for you at Guardeon.',
+    ctaBtn: 'Join',
+    ctaPlaceholder: 'Your email address'
+  },
+  da: {
+    heroTag: 'Non-profit · Open source · AI på enheden',
+    heroTitle: 'Beskytter børn i den <span class="em">digitale tidsalder</span>',
+    heroSub: 'Guardeon er open source-AI, der opdager grooming, cybermobning, selvskade og digitale trusler på dit barns enhed. Ingen data forlader telefonen. Gratis for altid.',
+    heroBtn: 'Støt missionen',
+    problemLabel: 'Problemet',
+    problemTitle: 'Børn er ikke sikre online',
+    problemSub: 'Truslerne udvikler sig hurtigere end forældrekontrol. Rovdyr bruger de samme platforme som dine børn.',
+    featLabel: 'Hvad Guardeon gør',
+    featTitle: 'Omfattende digital beskyttelse',
+    featSub: 'Ni integrerede forsvarslag, der arbejder lydløst på enheden. Ingen sky. Ingen overvågning. Bare intelligent detektion.',
+    howLabel: 'Sådan virker det',
+    howTitle: 'Fire lag, én enhed',
+    howSub: 'Alt kører lokalt. Ingen besked forlader nogensinde dit barns telefon.',
+    privLabel: 'Privatlivsarkitektur',
+    privTitle: 'Vi kan ikke se dine data.<br>By design.',
+    privSub: 'Guardeon har ingen servere, ingen konti, ingen sky. Der er intet at hacke, fordi der er intet at gemme.',
+    ctaTitle: 'Beskyt børn. Ikke deres data.',
+    ctaSub: 'Uanset om du er forælder, underviser, udvikler, forsker eller politiker — der er plads til dig hos Guardeon.',
+    ctaBtn: 'Tilmeld',
+    ctaPlaceholder: 'Din e-mailadresse'
+  },
+  de: {
+    heroTag: 'Gemeinnützig · Open Source · KI auf dem Gerät',
+    heroTitle: 'Kinder schützen im <span class="em">digitalen Zeitalter</span>',
+    heroSub: 'Guardeon ist Open-Source-KI, die Grooming, Cybermobbing, Selbstverletzung und digitale Bedrohungen auf dem Gerät Ihres Kindes erkennt. Keine Daten verlassen das Telefon. Für immer kostenlos.',
+    heroBtn: 'Mission unterstützen',
+    problemLabel: 'Das Problem',
+    problemTitle: 'Kinder sind online nicht sicher',
+    problemSub: 'Die Bedrohungen entwickeln sich schneller als Kinderschutzmaßnahmen. Täter nutzen dieselben Plattformen wie Ihre Kinder.',
+    featLabel: 'Was Guardeon macht',
+    featTitle: 'Umfassender digitaler Schutz',
+    featSub: 'Neun integrierte Verteidigungsschichten, die lautlos auf dem Gerät arbeiten. Keine Cloud. Keine Überwachung.',
+    howLabel: 'So funktioniert es',
+    howTitle: 'Vier Schichten, ein Gerät',
+    howSub: 'Alles läuft lokal. Keine Nachricht verlässt jemals das Telefon Ihres Kindes.',
+    privLabel: 'Datenschutzarchitektur',
+    privTitle: 'Wir können Ihre Daten nicht sehen.<br>By Design.',
+    privSub: 'Guardeon hat keine Server, keine Konten, keine Cloud. Es gibt nichts zu hacken, weil es nichts zu speichern gibt.',
+    ctaTitle: 'Kinder schützen. Nicht ihre Daten.',
+    ctaSub: 'Ob Elternteil, Pädagoge, Entwickler, Forscher oder Politiker — bei Guardeon ist Platz für Sie.',
+    ctaBtn: 'Beitreten',
+    ctaPlaceholder: 'Ihre E-Mail-Adresse'
+  },
+  fr: {
+    heroTag: 'Non-lucratif · Open source · IA sur l\'appareil',
+    heroTitle: 'Protéger les enfants à l\'<span class="em">ère numérique</span>',
+    heroSub: 'Guardeon est une IA open source qui détecte le grooming, le cyberharcèlement, l\'automutilation et les menaces numériques sur l\'appareil de votre enfant. Aucune donnée ne quitte le téléphone. Gratuit pour toujours.',
+    heroBtn: 'Soutenir la mission',
+    problemLabel: 'Le problème',
+    problemTitle: 'Les enfants ne sont pas en sécurité en ligne',
+    problemSub: 'Les menaces évoluent plus vite que le contrôle parental. Les prédateurs utilisent les mêmes plateformes que vos enfants.',
+    featLabel: 'Ce que fait Guardeon',
+    featTitle: 'Protection numérique complète',
+    featSub: 'Neuf couches de défense intégrées qui fonctionnent silencieusement sur l\'appareil. Pas de cloud. Pas de surveillance.',
+    howLabel: 'Comment ça marche',
+    howTitle: 'Quatre couches, un appareil',
+    howSub: 'Tout fonctionne localement. Aucun message ne quitte jamais le téléphone de votre enfant.',
+    privLabel: 'Architecture de confidentialité',
+    privTitle: 'Nous ne pouvons pas voir vos données.<br>Par conception.',
+    privSub: 'Guardeon n\'a pas de serveurs, pas de comptes, pas de cloud. Il n\'y a rien à pirater car il n\'y a rien à stocker.',
+    ctaTitle: 'Protéger les enfants. Pas leurs données.',
+    ctaSub: 'Que vous soyez parent, éducateur, développeur, chercheur ou décideur — il y a une place pour vous chez Guardeon.',
+    ctaBtn: 'Rejoindre',
+    ctaPlaceholder: 'Votre adresse e-mail'
+  },
+  sv: {
+    heroTag: 'Ideell · Öppen källkod · AI på enheten',
+    heroTitle: 'Skyddar barn i den <span class="em">digitala tidsåldern</span>',
+    heroSub: 'Guardeon är AI med öppen källkod som upptäcker grooming, nätmobbning, självskada och digitala hot på ditt barns enhet. Ingen data lämnar telefonen. Gratis för alltid.',
+    heroBtn: 'Stöd uppdraget',
+    problemLabel: 'Problemet',
+    problemTitle: 'Barn är inte säkra online',
+    problemSub: 'Hoten utvecklas snabbare än föräldrakontroller. Rovdjur använder samma plattformar som dina barn.',
+    featLabel: 'Vad Guardeon gör',
+    featTitle: 'Omfattande digitalt skydd',
+    featSub: 'Nio integrerade försvarslager som arbetar tyst på enheten. Inget moln. Ingen övervakning.',
+    howLabel: 'Så fungerar det',
+    howTitle: 'Fyra lager, en enhet',
+    howSub: 'Allt körs lokalt. Inget meddelande lämnar någonsin ditt barns telefon.',
+    privLabel: 'Integritetsarkitektur',
+    privTitle: 'Vi kan inte se dina data.<br>By design.',
+    privSub: 'Guardeon har inga servrar, inga konton, inget moln. Det finns inget att hacka eftersom det finns inget att lagra.',
+    ctaTitle: 'Skydda barn. Inte deras data.',
+    ctaSub: 'Oavsett om du är förälder, pedagog, utvecklare, forskare eller beslutsfattare — det finns en plats för dig hos Guardeon.',
+    ctaBtn: 'Gå med',
+    ctaPlaceholder: 'Din e-postadress'
+  },
+  no: {
+    heroTag: 'Ideell · Åpen kildekode · AI på enheten',
+    heroTitle: 'Beskytter barn i den <span class="em">digitale tidsalderen</span>',
+    heroSub: 'Guardeon er åpen kildekode-AI som oppdager grooming, nettmobbing, selvskading og digitale trusler på barnets enhet. Ingen data forlater telefonen. Gratis for alltid.',
+    heroBtn: 'Støtt oppdraget',
+    problemLabel: 'Problemet',
+    problemTitle: 'Barn er ikke trygge på nett',
+    problemSub: 'Truslene utvikler seg raskere enn foreldrekontroll. Rovdyr bruker de samme plattformene som barna dine.',
+    featLabel: 'Hva Guardeon gjør',
+    featTitle: 'Omfattende digital beskyttelse',
+    featSub: 'Ni integrerte forsvarslag som jobber stille på enheten. Ingen sky. Ingen overvåking.',
+    howLabel: 'Slik fungerer det',
+    howTitle: 'Fire lag, én enhet',
+    howSub: 'Alt kjører lokalt. Ingen melding forlater noensinne barnets telefon.',
+    privLabel: 'Personvernarkitektur',
+    privTitle: 'Vi kan ikke se dataene dine.<br>By design.',
+    privSub: 'Guardeon har ingen servere, ingen kontoer, ingen sky. Det er ingenting å hacke fordi det er ingenting å lagre.',
+    ctaTitle: 'Beskytt barn. Ikke dataene deres.',
+    ctaSub: 'Enten du er forelder, pedagog, utvikler, forsker eller politiker — det er plass til deg hos Guardeon.',
+    ctaBtn: 'Bli med',
+    ctaPlaceholder: 'Din e-postadresse'
+  },
+  ar: {
+    heroTag: 'غير ربحي · مفتوح المصدر · ذكاء اصطناعي على الجهاز',
+    heroTitle: 'حماية الأطفال في <span class="em">العصر الرقمي</span>',
+    heroSub: 'Guardeon هو ذكاء اصطناعي مفتوح المصدر يكتشف الاستدراج والتنمر الإلكتروني وإيذاء النفس والتهديدات الرقمية على جهاز طفلك. لا تغادر أي بيانات الهاتف. مجاني إلى الأبد.',
+    heroBtn: 'ادعم المهمة',
+    problemLabel: 'المشكلة',
+    problemTitle: 'الأطفال ليسوا آمنين على الإنترنت',
+    problemSub: 'التهديدات تتطور أسرع من أدوات الرقابة الأبوية. المفترسون يستخدمون نفس المنصات التي يستخدمها أطفالك.',
+    featLabel: 'ماذا يفعل Guardeon',
+    featTitle: 'حماية رقمية شاملة',
+    featSub: 'تسع طبقات دفاعية متكاملة تعمل بصمت على الجهاز. بدون سحابة. بدون مراقبة.',
+    howLabel: 'كيف يعمل',
+    howTitle: 'أربع طبقات، جهاز واحد',
+    howSub: 'كل شيء يعمل محلياً. لا تغادر أي رسالة هاتف طفلك أبداً.',
+    privLabel: 'بنية الخصوصية',
+    privTitle: 'لا يمكننا رؤية بياناتك.<br>بالتصميم.',
+    privSub: 'Guardeon ليس لديه خوادم، ولا حسابات، ولا سحابة. لا يوجد شيء للاختراق لأنه لا يوجد شيء للتخزين.',
+    ctaTitle: 'احمِ الأطفال. ليس بياناتهم.',
+    ctaSub: 'سواء كنت والداً أو معلماً أو مطوراً أو باحثاً أو صانع سياسات — هناك مكان لك في Guardeon.',
+    ctaBtn: 'انضم',
+    ctaPlaceholder: 'عنوان بريدك الإلكتروني'
+  }
+};
+
+var currentLang = 'en';
+
+function toggleLangMenu() {
+  document.getElementById('langMenu').classList.toggle('open');
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  var t = translations[lang];
+  if (!t) return;
+
+  // Set direction for Arabic
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  // Update translatable elements
+  var map = {
+    'hero-tag-text': t.heroTag,
+    'hero-title': t.heroTitle,
+    'hero-sub': t.heroSub,
+    'hero-btn-text': t.heroBtn,
+    'problem-label': t.problemLabel,
+    'problem-title': t.problemTitle,
+    'problem-sub': t.problemSub,
+    'feat-label': t.featLabel,
+    'feat-title': t.featTitle,
+    'feat-sub': t.featSub,
+    'how-label': t.howLabel,
+    'how-title': t.howTitle,
+    'how-sub': t.howSub,
+    'priv-label': t.privLabel,
+    'priv-title': t.privTitle,
+    'priv-sub': t.privSub,
+    'cta-title': t.ctaTitle,
+    'cta-sub': t.ctaSub
+  };
+
+  for (var id in map) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = map[id];
+  }
+
+  var btn = document.getElementById('cta-btn');
+  if (btn) btn.textContent = t.ctaBtn;
+  var input = document.querySelector('.cta-form input[type="email"]');
+  if (input) input.placeholder = t.ctaPlaceholder;
+  var heroBtn = document.getElementById('hero-btn');
+  if (heroBtn) heroBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>' + t.heroBtn;
+
+  // Update active state
+  document.querySelectorAll('.lang-option').forEach(function(el) {
+    el.classList.toggle('active', el.dataset.lang === lang);
+  });
+
+  document.getElementById('langMenu').classList.remove('open');
+}
+
+// Close menu on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-switcher')) {
+    var menu = document.getElementById('langMenu');
+    if (menu) menu.classList.remove('open');
+  }
+});
 </script>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-switcher">
+  <div class="lang-toggle" onclick="toggleLangMenu()">🌐</div>
+  <div class="lang-menu" id="langMenu">
+    <button class="lang-option active" data-lang="en" onclick="setLang('en')"><span class="flag">🇬🇧</span> English</button>
+    <button class="lang-option" data-lang="da" onclick="setLang('da')"><span class="flag">🇩🇰</span> Dansk</button>
+    <button class="lang-option" data-lang="sv" onclick="setLang('sv')"><span class="flag">🇸🇪</span> Svenska</button>
+    <button class="lang-option" data-lang="no" onclick="setLang('no')"><span class="flag">🇳🇴</span> Norsk</button>
+    <button class="lang-option" data-lang="de" onclick="setLang('de')"><span class="flag">🇩🇪</span> Deutsch</button>
+    <button class="lang-option" data-lang="fr" onclick="setLang('fr')"><span class="flag">🇫🇷</span> Français</button>
+    <button class="lang-option" data-lang="ar" onclick="setLang('ar')"><span class="flag">🇸🇦</span> العربية</button>
+  </div>
+</div>
 
 </body>
 </html>
