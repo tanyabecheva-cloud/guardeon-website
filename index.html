@@ -112,21 +112,66 @@ section { padding:100px 0; }
 .s-head-c { text-align:center; }
 .s-head-c .s-sub { margin:0 auto; }
 
-/* ═══ PROBLEM ═══ */
+/* ═══ PROBLEM CAROUSEL ═══ */
 .problem { background:var(--bg); }
-.problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.problem-card {
-  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
-  padding:32px 28px; transition:all .3s;
+.carousel-wrap { position:relative; max-width:900px; margin:0 auto; }
+.carousel-viewport { overflow:hidden; border-radius:var(--radius); }
+.carousel-track {
+  display:flex; transition:transform .45s cubic-bezier(.25,.46,.45,.94);
 }
-.problem-card:hover { border-color:var(--rose); background:rgba(244,63,94,.04); }
-.problem-card .num { font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:2.5rem; letter-spacing:-1px; margin-bottom:4px; }
-.problem-card .num.r { color:var(--rose); }
-.problem-card .num.a { color:var(--amber); }
-.problem-card .num.v { color:var(--violet); }
-.problem-card h3 { font-size:.95rem; font-weight:700; margin-bottom:8px; }
-.problem-card p { font-size:.85rem; color:var(--text-2); line-height:1.6; }
-@media(max-width:768px) { .problem-grid { grid-template-columns:1fr; } }
+.problem-slide {
+  min-width:100%; display:grid; grid-template-columns:1fr 1fr; gap:0;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+}
+.slide-stat {
+  padding:48px 40px; display:flex; flex-direction:column; justify-content:center;
+  border-right:1px solid var(--border);
+}
+.slide-stat .num {
+  font-family:'Space Grotesk',sans-serif; font-weight:800;
+  font-size:clamp(3rem,7vw,4.5rem); letter-spacing:-2px; line-height:1; margin-bottom:8px;
+}
+.slide-stat h3 { font-size:1.1rem; font-weight:700; margin-bottom:4px; }
+.slide-stat .source { font-size:.72rem; color:var(--text-3); font-style:italic; margin-top:12px; }
+.slide-info { padding:48px 40px; display:flex; flex-direction:column; justify-content:center; }
+.slide-category {
+  font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:2px;
+  margin-bottom:12px; display:inline-flex; align-items:center; gap:8px;
+}
+.slide-info h4 { font-size:1.15rem; font-weight:700; margin-bottom:10px; line-height:1.35; }
+.slide-info p { font-size:.88rem; color:var(--text-2); line-height:1.7; }
+.slide-layer {
+  display:inline-block; margin-top:16px; font-size:.72rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:1.5px; padding:4px 12px; border-radius:var(--radius-pill);
+  background:var(--surface-h); border:1px solid var(--border); color:var(--text-3);
+}
+
+/* Carousel nav */
+.carousel-nav {
+  display:flex; align-items:center; justify-content:center; gap:16px; margin-top:28px;
+}
+.carousel-btn {
+  width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .2s;
+  color:var(--text-2); font-size:1.1rem;
+}
+.carousel-btn:hover { border-color:var(--border-h); color:var(--text); background:var(--surface-h); }
+.carousel-btn:active { transform:scale(.95); }
+.carousel-dots { display:flex; gap:6px; }
+.carousel-dot {
+  width:8px; height:8px; border-radius:50%; background:var(--border); transition:all .3s; cursor:pointer;
+}
+.carousel-dot.active { background:var(--blue-g); width:24px; border-radius:4px; }
+.carousel-counter {
+  font-family:'Space Grotesk',sans-serif; font-size:.82rem; font-weight:600; color:var(--text-3);
+  min-width:48px; text-align:center;
+}
+
+@media(max-width:768px) {
+  .problem-slide { grid-template-columns:1fr; }
+  .slide-stat { border-right:none; border-bottom:1px solid var(--border); padding:32px 28px; }
+  .slide-info { padding:28px 28px 32px; }
+}
 
 /* ═══ WHAT IT DOES ═══ */
 .features { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
@@ -446,21 +491,152 @@ footer {
       <h2 class="s-title" id="problem-title">Children are not safe online</h2>
       <p class="s-sub" id="problem-sub">The threats evolve faster than parental controls. Predators use the same platforms your children do.</p>
     </div>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="num r">1 in 3</div>
-        <h3>children face online harassment</h3>
-        <p>Cyberbullying follows them from school to home, 24/7, across every app and platform.</p>
+    <div class="carousel-wrap">
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="problemTrack">
+
+          <!-- 1. Grooming -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--rose)">8 min</div>
+              <h3>to groom a child on some platforms</h3>
+              <div class="source">Source: Internet Watch Foundation, 2023</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--rose)">🎭 Grooming Detection</div>
+              <h4>Predators are faster than parents</h4>
+              <p>Online grooming has accelerated from weeks to minutes. Predators use flattery, secrecy, gift bribery, and isolation tactics — patterns our AI detects in real time across conversations.</p>
+              <span class="slide-layer">Guardeon Layer: Grooming Detection</span>
+            </div>
+          </div>
+
+          <!-- 2. Bullying -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--amber)">1 in 3</div>
+              <h3>children experience cyberbullying</h3>
+              <div class="source">Source: UNESCO, 2024</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--amber)">💬 Bullying Detection</div>
+              <h4>The schoolyard moved online — and it never closes</h4>
+              <p>Cyberbullying follows children 24/7 across every app. Guardeon tracks patterns of insults, social exclusion, threats, and sustained harassment — not just single messages, but escalation over time.</p>
+              <span class="slide-layer">Guardeon Layer: Bullying Detection</span>
+            </div>
+          </div>
+
+          <!-- 3. Self-Harm -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--violet)">46%</div>
+              <h3>rise in self-harm among teens since 2010</h3>
+              <div class="source">Source: CDC / BMJ, 2023</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--violet)">💜 Self-Harm Signals</div>
+              <h4>The crisis is happening in their messages</h4>
+              <p>Children express hopelessness, farewell language, and method discussion in private chats before anyone notices. Guardeon detects crisis language and immediately surfaces local hotlines and intervention pathways.</p>
+              <span class="slide-layer">Guardeon Layer: Self-Harm Signals</span>
+            </div>
+          </div>
+
+          <!-- 4. Violence -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--rose)">80%</div>
+              <h3>of school attackers showed warning signs online</h3>
+              <div class="source">Source: US Secret Service, National Threat Assessment Center</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--rose)">⚠️ Violence Detection</div>
+              <h4>Warning signs are written down — if anyone's reading</h4>
+              <p>Threat language, planning, manifesto-style messages, and hit lists appear in chats and posts before violence happens. Guardeon flags these patterns and alerts trusted adults immediately.</p>
+              <span class="slide-layer">Guardeon Layer: Violence Detection</span>
+            </div>
+          </div>
+
+          <!-- 5. Content Wellness -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--cyan)">64%</div>
+              <h3>of teens see "extreme" content on social media</h3>
+              <div class="source">Source: Surgeon General's Advisory, 2023</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--cyan)">🧠 Content Wellness</div>
+              <h4>Algorithms feed children what harms them most</h4>
+              <p>Pro-anorexia content, body image obsession, harmful challenges, and radicalisation pipelines are algorithmically served to vulnerable children. Guardeon detects the language patterns of toxic influence.</p>
+              <span class="slide-layer">Guardeon Layer: Content Wellness</span>
+            </div>
+          </div>
+
+          <!-- 6. Adult Content -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--amber)">Age 11</div>
+              <h3>average first exposure to pornography</h3>
+              <div class="source">Source: British Board of Film Classification, 2023</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--amber)">🔞 Adult Content Blocker</div>
+              <h4>Children are finding what they shouldn't — earlier than ever</h4>
+              <p>Explicit content, age verification bypass, substance references, and gambling exposure reach children through chat, search, and peer sharing. Guardeon flags these conversations before exposure deepens.</p>
+              <span class="slide-layer">Guardeon Layer: Adult Content Blocker</span>
+            </div>
+          </div>
+
+          <!-- 7. Photo Monitoring -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--blue-g)">1 in 4</div>
+              <h3>children receive unsolicited explicit images</h3>
+              <div class="source">Source: Thorn / Benenson Strategy Group, 2023</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--blue-g)">📷 Photo Monitoring</div>
+              <h4>The images arrive without warning</h4>
+              <p>Unsolicited explicit photos arrive through chat apps, often in rapid bursts. Guardeon watches the photo library on-device — detecting suspicious incoming media from messaging apps without ever uploading a single image.</p>
+              <span class="slide-layer">Guardeon Layer: Photo Monitoring</span>
+            </div>
+          </div>
+
+          <!-- 8. Screen Time -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--emerald)">7.5 hrs</div>
+              <h3>average daily screen time for teens</h3>
+              <div class="source">Source: Common Sense Media, 2024</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--emerald)">⏱️ Screen Time Intelligence</div>
+              <h4>It's not just how much — it's when and where</h4>
+              <p>Late-night usage, sudden spikes on high-risk apps like Discord, Omegle, or TikTok, and excessive total screen time all correlate with increased exposure to harm. Guardeon tracks it all with age-appropriate limits.</p>
+              <span class="slide-layer">Guardeon Layer: Screen Time Intelligence</span>
+            </div>
+          </div>
+
+          <!-- 9. Content Radar -->
+          <div class="problem-slide">
+            <div class="slide-stat">
+              <div class="num" style="color:var(--violet)">56%</div>
+              <h3>of parents don't know what their kids play or watch</h3>
+              <div class="source">Source: Ofcom / Internet Matters, 2023</div>
+            </div>
+            <div class="slide-info">
+              <div class="slide-category" style="color:var(--violet)">🎮 Content Radar</div>
+              <h4>Not all games and shows are what they seem</h4>
+              <p>A "kids game" can contain gore, predator-accessible chat, gambling mechanics, and radicalisation. Guardeon rates 50+ games, shows, YouTubers, and TikTok creators by age — with themes, warnings, and safer alternatives.</p>
+              <span class="slide-layer">Guardeon Layer: Content Radar</span>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="problem-card">
-        <div class="num a">8 min</div>
-        <h3>average grooming time</h3>
-        <p>On some platforms, predators can identify and begin grooming a child in under 8 minutes.</p>
-      </div>
-      <div class="problem-card">
-        <div class="num v">40%</div>
-        <h3>of children tell no one</h3>
-        <p>Most children don't report what happens to them online. By the time parents find out, damage is done.</p>
+      <div class="carousel-nav">
+        <button class="carousel-btn" onclick="slideCarousel(-1)" aria-label="Previous">&#8592;</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <span class="carousel-counter" id="carouselCounter">1 / 9</span>
+        <button class="carousel-btn" onclick="slideCarousel(1)" aria-label="Next">&#8594;</button>
       </div>
     </div>
   </div>
@@ -851,6 +1027,52 @@ function handleForm(e) {
   fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
 }
 
+// ═══ PROBLEM CAROUSEL ═══
+var currentSlide = 0;
+var totalSlides = document.querySelectorAll('.problem-slide').length;
+var track = document.getElementById('problemTrack');
+var dotsContainer = document.getElementById('carouselDots');
+var counter = document.getElementById('carouselCounter');
+
+// Build dots
+for (var d = 0; d < totalSlides; d++) {
+  var dot = document.createElement('div');
+  dot.className = 'carousel-dot' + (d === 0 ? ' active' : '');
+  dot.dataset.index = d;
+  dot.onclick = function() { goToSlide(parseInt(this.dataset.index)); };
+  dotsContainer.appendChild(dot);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  if (currentSlide < 0) currentSlide = totalSlides - 1;
+  if (currentSlide >= totalSlides) currentSlide = 0;
+  track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+  counter.textContent = (currentSlide + 1) + ' / ' + totalSlides;
+  var dots = dotsContainer.querySelectorAll('.carousel-dot');
+  dots.forEach(function(dot, i) { dot.classList.toggle('active', i === currentSlide); });
+}
+
+function slideCarousel(dir) { goToSlide(currentSlide + dir); }
+
+// Keyboard nav
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowLeft') slideCarousel(-1);
+  if (e.key === 'ArrowRight') slideCarousel(1);
+});
+
+// Touch/swipe support
+(function() {
+  var startX = 0, diff = 0;
+  var viewport = document.querySelector('.carousel-viewport');
+  viewport.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchmove', function(e) { diff = e.touches[0].clientX - startX; }, { passive: true });
+  viewport.addEventListener('touchend', function() {
+    if (Math.abs(diff) > 50) slideCarousel(diff > 0 ? -1 : 1);
+    diff = 0;
+  });
+})();
+
 // Smooth reveal on scroll
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
@@ -861,7 +1083,7 @@ var observer = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.problem-card, .feat-card, .how-step, .plat-card, .priv-item, .lang-pill, .origin-card').forEach(function(el) {
+document.querySelectorAll('.feat-card, .how-step, .plat-card, .priv-item, .lang-pill, .origin-card, .partner-card').forEach(function(el) {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity .6s ease, transform .6s ease';
