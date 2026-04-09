@@ -90,6 +90,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,26,46,.92
 .princ-card h3 .icon{font-size:1.2rem}
 .princ-card p{font-size:.88rem;color:var(--tl);line-height:1.6}
 
+/* ORIGIN */
+.origin{background:var(--navy);padding:100px 1.5rem;position:relative;overflow:hidden}
+.origin::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(124,77,255,.06) 0%,transparent 60%);pointer-events:none}
+.origin-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
+.origin-word{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,5.5rem);letter-spacing:-3px;line-height:1;margin-bottom:8px}
+.origin-word .guard{color:var(--accent)}
+.origin-word .eon{background:linear-gradient(135deg,var(--shield),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.origin-word .plus{color:var(--tl);font-weight:400;font-size:.5em;vertical-align:middle;margin:0 8px}
+.origin-tagline{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:40px}
+.origin-etymology{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.etym-card{background:var(--glass);border:1.5px solid var(--bd);border-radius:16px;padding:24px 28px;text-align:center;flex:0 1 240px;transition:.3s}
+.etym-card:hover{border-color:var(--accent)}
+.etym-word{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:4px}
+.etym-word.w1{color:var(--accent)}
+.etym-word.w2{background:linear-gradient(135deg,var(--shield),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.etym-meaning{font-size:.9rem;color:var(--tl);font-style:italic;margin-bottom:8px}
+.etym-desc{font-size:.82rem;color:var(--tl);line-height:1.5}
+.origin-quote{position:relative;max-width:580px;margin:0 auto 36px;padding:28px 32px;background:var(--glass);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;text-align:left}
+.origin-quote p{font-size:1.05rem;color:var(--tx);line-height:1.7;font-weight:500}
+.origin-mission{font-size:1rem;color:var(--tl);line-height:1.8;max-width:540px;margin:0 auto;text-align:center}
+.origin-mission strong{color:var(--tx);font-weight:600}
+@media(max-width:480px){.origin-etymology{flex-direction:column;align-items:center}}
+
 /* CTA */
 .cta{background:var(--deep);padding:100px 1.5rem;text-align:center;position:relative;overflow:hidden}
 .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(79,195,247,.08) 0%,transparent 60%);pointer-events:none}
@@ -217,6 +240,7 @@ function showToast(msg){
     <a href="#how">How It Works</a>
     <a href="#who">Who It's For</a>
     <a href="#principles">Principles</a>
+    <a href="#origin">Our Name</a>
     <a href="#join" class="nav-cta">Get Involved</a>
   </div>
 </nav>
@@ -368,6 +392,35 @@ function showToast(msg){
       <h3><span class="icon">🤝</span> Collaborative</h3>
       <p>Working with schools, municipalities, NGOs, and international bodies. This problem is too big for one organisation.</p>
     </div>
+  </div>
+</section>
+
+<!-- ORIGIN STORY -->
+<section class="origin" id="origin">
+  <div class="origin-inner">
+    <div class="origin-word"><span class="guard">Guard</span><span class="plus">+</span><span class="eon">eon</span></div>
+    <div class="origin-tagline">Eternal Protection</div>
+
+    <div class="origin-etymology">
+      <div class="etym-card">
+        <div class="etym-word w1">Guard</div>
+        <div class="etym-meaning">/ɡɑːrd/ — verb</div>
+        <div class="etym-desc">To watch over and protect from harm or danger</div>
+      </div>
+      <div class="etym-card">
+        <div class="etym-word w2">Eon</div>
+        <div class="etym-meaning">/ˈiː.ɒn/ — noun</div>
+        <div class="etym-desc">An indefinitely long period of time; an age</div>
+      </div>
+    </div>
+
+    <div class="origin-quote">
+      <p>Guardeon — from "guard" (to protect) and "eon" (an age, an era). Technology that protects children not just today, but for generations.</p>
+    </div>
+
+    <p class="origin-mission">
+      Guardeon means protection that endures. We build open-source AI that keeps children safe online — <strong>not as a product, but as a public good.</strong> For this generation and every one after.
+    </p>
   </div>
 </section>
 
