@@ -240,6 +240,32 @@ section { padding:100px 0; }
 .priv-blocked-label { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--rose); }
 @media(max-width:768px) { .priv-layout { grid-template-columns:1fr; } }
 
+/* ═══ WHY OPEN SOURCE ═══ */
+.opensource { background:var(--bg); }
+.os-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; max-width:960px; margin:0 auto; }
+.os-reasons { display:flex; flex-direction:column; gap:20px; }
+.os-reason { display:flex; gap:16px; align-items:flex-start; }
+.os-num {
+  width:28px; height:28px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.78rem; color:#fff; margin-top:2px;
+}
+.os-reason h4 { font-size:.92rem; font-weight:700; margin-bottom:4px; }
+.os-reason p { font-size:.83rem; color:var(--text-2); line-height:1.6; }
+.os-not {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:32px;
+}
+.os-not h3 { font-size:1rem; font-weight:700; margin-bottom:20px; }
+.os-not-list { display:flex; flex-direction:column; gap:12px; }
+.os-not-item { display:flex; align-items:flex-start; gap:10px; font-size:.85rem; }
+.os-not-item .icon { flex-shrink:0; margin-top:2px; }
+.os-not-item .open { color:var(--emerald); }
+.os-not-item .closed { color:var(--rose); }
+.os-not-item span { color:var(--text-2); line-height:1.5; }
+.os-not-item strong { color:var(--text); font-weight:600; }
+@media(max-width:768px) { .os-layout { grid-template-columns:1fr; } }
+
 /* ═══ PLATFORM ═══ */
 .platform { background:var(--bg); }
 .plat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
@@ -860,6 +886,69 @@ footer {
           <div class="priv-node blocked"><span class="dot" style="background:var(--rose)"></span> Cloud servers</div>
           <div class="priv-node blocked"><span class="dot" style="background:var(--rose)"></span> Third-party analytics</div>
           <div class="priv-node blocked"><span class="dot" style="background:var(--rose)"></span> Ad networks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY OPEN SOURCE -->
+<section class="opensource">
+  <div class="container">
+    <div class="s-head s-head-c">
+      <div class="s-label">Why open source</div>
+      <h2 class="s-title">You shouldn't have to trust us. You should be able to verify us.</h2>
+      <p class="s-sub">We're asking parents to install software that monitors their children. The code must be public. There is no other way to earn that trust.</p>
+    </div>
+    <div class="os-layout">
+      <div class="os-reasons">
+        <div class="os-reason">
+          <div class="os-num">1</div>
+          <div>
+            <h4>Trust is the product</h4>
+            <p>Schools and municipalities will not deploy a closed-source child monitoring tool. Open source means anyone — parents, security researchers, regulators — can read exactly what the app does.</p>
+          </div>
+        </div>
+        <div class="os-reason">
+          <div class="os-num">2</div>
+          <div>
+            <h4>More eyes, fewer vulnerabilities</h4>
+            <p>If there's a bug that leaks data or a flaw in the keyboard extension, we want security researchers finding it — not attackers. Closed source just means nobody checks until it's exploited.</p>
+          </div>
+        </div>
+        <div class="os-reason">
+          <div class="os-num">3</div>
+          <div>
+            <h4>There is no secret sauce to protect</h4>
+            <p>The detection engine uses pattern matching and ML classifiers. Predators already know what grooming patterns look like. Our advantage is speed and coverage, not secrecy.</p>
+          </div>
+        </div>
+        <div class="os-reason">
+          <div class="os-num">4</div>
+          <div>
+            <h4>Grants and partners require it</h4>
+            <p>Horizon Europe favours open-source outputs. Thorn and NCMEC partner with open-source projects. IEEE standards work is inherently public. Closed source would disqualify us.</p>
+          </div>
+        </div>
+        <div class="os-reason">
+          <div class="os-num">5</div>
+          <div>
+            <h4>This problem is bigger than one organisation</h4>
+            <p>Any developer, anywhere, can take our detection engine and build on it. The more tools that exist to protect children, the better. We are not competitors — we are infrastructure.</p>
+          </div>
+        </div>
+      </div>
+      <div class="os-not">
+        <h3>What's open vs. what's not</h3>
+        <div class="os-not-list">
+          <div class="os-not-item"><span class="icon open">&#10003;</span> <span><strong>Application source code</strong> — every line, publicly auditable</span></div>
+          <div class="os-not-item"><span class="icon open">&#10003;</span> <span><strong>Detection engine</strong> — patterns, classifiers, scoring logic</span></div>
+          <div class="os-not-item"><span class="icon open">&#10003;</span> <span><strong>ML training pipeline</strong> — synthetic data generation, model architecture</span></div>
+          <div class="os-not-item"><span class="icon open">&#10003;</span> <span><strong>Keyboard extension</strong> — full Swift source for iOS</span></div>
+          <div class="os-not-item"><span class="icon open">&#10003;</span> <span><strong>Website</strong> — even this site is open source</span></div>
+          <div class="os-not-item"><span class="icon closed">&#10007;</span> <span><strong>API keys &amp; credentials</strong> — excluded via .gitignore</span></div>
+          <div class="os-not-item"><span class="icon closed">&#10007;</span> <span><strong>Research study data</strong> — held by university data controllers, never public</span></div>
+          <div class="os-not-item"><span class="icon closed">&#10007;</span> <span><strong>Partner integration tokens</strong> — Thorn, PhotoDNA credentials are private</span></div>
         </div>
       </div>
     </div>
